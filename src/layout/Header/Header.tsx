@@ -10,8 +10,8 @@ import { Search } from '@/layout/Header/Search';
 
 export const Header = () => {
   return (
-    <header className="w-full h-[55px] border-b-[1px] border-ins-border flex justify-center items-center">
-      <div className="w-9/12 h-full flex justify-between items-center">
+    <header className="w-full h-[55px] border-b-[1px] border-ins-border">
+      <div className="w-9/12 mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>
             <Instagram />

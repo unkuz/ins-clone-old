@@ -5,10 +5,10 @@ import { TaskBar } from '@/layout/TaskBar/TaskBar';
 
 export const Layout: React.FC = ({ children }) => {
   return (
-    <div className="text-sm">
+    <div className="text-xs w-full">
       <HeadMeta />
       <Header />
-      {children}
+      <div className="w-9/12 mx-auto">{children}</div>
       <TaskBar />
     </div>
   );
