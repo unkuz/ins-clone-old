@@ -14,7 +14,7 @@ export const Header = () => {
       <div className="w-9/12 h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>
-            <Instagram className="w-[30px]" />
+            <Instagram />
           </Icon>
         </div>
         <div className="flex-1 justify-center hidden sm:flex">
