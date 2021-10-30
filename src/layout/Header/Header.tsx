@@ -16,7 +16,7 @@ import { Search } from '@/layout/Header/Search';
 import Image from 'next/image';
 import instagram_logo from '@/assets/images/instagram_logo.png';
 import { useAppDispatch } from '@/store/hooks';
-import { selectedField, toogleSearch } from '@/store/slice/appSlice';
+import { selectedField, toogleSearch, showSearch } from '@/store/slice/appSlice';
 import { AppSelected } from '@/store/slice/appSlice';
 import { useAppSelector } from '@/store/hooks';
 import { useRouter } from 'next/router';
@@ -26,7 +26,7 @@ export const Header = () => {
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
   return (
-    <header className="fixed w-full h-[50px] border-b-[1px] border-ins-border z-10 bg-white">
+    <header className="fixed w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10">
       <div className="w-[950px] mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>
@@ -38,7 +38,7 @@ export const Header = () => {
           </Icon>
         </div>
         <div className="flex-1 justify-center hidden sm:flex">
-          <div onClick={() => dispatch(toogleSearch())}>
+          <div onClick={() => dispatch(showSearch())}>
             <Search />
           </div>
         </div>

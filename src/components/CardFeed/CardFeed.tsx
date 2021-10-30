@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Story } from '@/components/Stories/Story';
 import MoreOptions from '@/assets/svg/more_options.svg';
 import { Icon } from '../Icon';
@@ -9,6 +9,15 @@ import Save from '@/assets/svg/save.svg';
 import Emoji from '@/assets/svg/emoji.svg';
 
 export const CardFeed = () => {
+  const [comment, setComment] = useState('');
+  const [isComment, setIsComment] = useState<boolean>(false);
+  useEffect(() => {
+    if (comment) {
+      return setIsComment((prev) => true);
+    }
+    setIsComment((prev) => false);
+  }, [comment, isComment]);
+
   return (
     <div>
       {/* header section */}
@@ -45,17 +54,27 @@ export const CardFeed = () => {
               </Icon>
             </div>
           </div>
-          <div className="w-11/12 mx-auto">800 Like</div>
+          <div className="w-11/12 mx-auto text-red-600 cursor-pointer">800 Like</div>
           <div className="w-11/12 mx-auto">
-            wavesaudio 🌌 Could you create depth in your mixes WITHOUT any reverbs, delays and spatial effects? We’ll
-            prove how can you do just...
+            <span className="text-blue-500 cursor-pointer text-sm">wavesaudio </span>
+            🌌 Could you create depth in your mixes WITHOUT any reverbs, delays and spatial effects? We’ll prove how can
+            you do just...
           </div>
           <div className="w-full h-5"></div>
           <div className="border-t-[1px] border-ins-border w-full h-[55px]">
             <div className="w-11/12 h-full mx-auto flex justify-between items-center">
-              <Emoji />
-              <input className="focus:outline-none py-2 w-[400px]" placeholder="Add Comment" />
-              <p>Post</p>
+              <div className="cursor-pointer">
+                <Emoji />
+              </div>
+              <input
+                className="focus:outline-none py-2 w-[400px]"
+                placeholder="Add Comment"
+                value={comment}
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+              />
+              <p className={`${isComment ? 'text-blue-500' : ''} cursor-pointer `}>Post</p>
             </div>
           </div>
         </div>

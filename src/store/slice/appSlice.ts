@@ -27,9 +27,15 @@ export const appSlice = createSlice({
     toogleSearch: (state) => {
       state.isShowSearchPopUp = !state.isShowSearchPopUp;
     },
+    hiddenSearch: (state) => {
+      state.isShowSearchPopUp = false;
+    },
+    showSearch: (state) => {
+      state.isShowSearchPopUp = true;
+    },
   },
   initialState,
 });
 
-export const { selectedField, toogleSearch } = appSlice.actions;
+export const { selectedField, toogleSearch, hiddenSearch,showSearch } = appSlice.actions;
 export default appSlice.reducer;

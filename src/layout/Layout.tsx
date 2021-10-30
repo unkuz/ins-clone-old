@@ -10,14 +10,13 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <div className="text-xs w-full relative">
       <HeadMeta />
+      {isSearchPopUpShow && <SearchPopUp />}
       <Header />
       <div className="w-[950px] mx-auto">{children}</div>
       <TaskBar />
       <div className="w-full h-[100px]"></div>
 
       {/* PopUp */}
-
-      {isSearchPopUpShow && <SearchPopUp />}
     </div>
   );
 };
