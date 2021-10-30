@@ -7,6 +7,8 @@ import FindPeople from '@/assets/svg/find_people.svg';
 import NewPost from '@/assets/svg/new_post.svg';
 import { Icon } from '@/components/Icon';
 import { Search } from '@/layout/Header/Search';
+import Image from 'next/image';
+import instagram_logo from '@/assets/images/instagram_logo.png';
 
 export const Header = () => {
   return (
@@ -14,7 +16,9 @@ export const Header = () => {
       <div className="w-9/12 mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>
-            <Instagram />
+            <div className="block w-[120px] h-[35px]">
+              <Image src={instagram_logo} layout="responsive" alt="" quality={100} />
+            </div>
           </Icon>
         </div>
         <div className="flex-1 justify-center hidden sm:flex">
