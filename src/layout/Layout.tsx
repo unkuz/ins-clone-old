@@ -10,6 +10,7 @@ export const Layout: React.FC = ({ children }) => {
       <Header />
       <div className="w-9/12 mx-auto">{children}</div>
       <TaskBar />
+      <div className="w-full h-[100px]"></div>
     </div>
   );
 };

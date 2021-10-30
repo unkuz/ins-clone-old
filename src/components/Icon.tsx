@@ -10,7 +10,7 @@ export const Icon: React.FC<IProps> = ({ children, href, size }) => {
   if (!href) {
     return (
       <>
-        <div className={`${size === 'l' ? 'w-[30px]' : 'w-[25px]'} cursor-pointer`}>{children}</div>
+        <div className={`${size === 'l' ? 'w-[22px]' : 'w-[21px]'} cursor-pointer`}>{children}</div>
       </>
     );
   }
