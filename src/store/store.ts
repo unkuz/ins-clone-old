@@ -1,10 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './slice/rootReducer';
-import { persistStore } from 'redux-persist';
-import { useDispatch } from 'react-redux';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(),
 });
 
 export const persistor = persistStore(store);

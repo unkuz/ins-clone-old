@@ -11,7 +11,7 @@ const InBox: NextPage = () => {
           <div className="w-full h-full">
             <div className="flex items-center justify-around bg-[#efefef] py-3">
               <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden">
-                <Image alt="" layout="fill" src="http://placekitten.com/200/200" />
+                <Image alt="" layout="fill" src="https://picsum.photos/seed/picsum/200/300" />
               </div>
               <div className="flex flex-col">
                 <p>Cuzknoth</p>

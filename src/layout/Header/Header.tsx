@@ -19,17 +19,21 @@ import { useAppDispatch } from '@/store/hooks';
 import { selectedField } from '@/store/slice/appSlice';
 import { AppSelected } from '@/store/slice/appSlice';
 import { useAppSelector } from '@/store/hooks';
+import { useRouter } from 'next/router';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
+  const router = useRouter();
   return (
     <header className="fixed w-full h-[55px] border-b-[1px] border-ins-border z-10 bg-white">
       <div className="w-9/12 mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>
-            <div className="block w-[120px] h-[35px]">
-              <Image src={instagram_logo} layout="responsive" alt="" quality={100} />
+            <div className="block w-[120px] h-[35px]" onClick={() => router.push('/')}>
+              <div className="w-[33px] h-[33px]">
+                <Instagram />
+              </div>
             </div>
           </Icon>
         </div>
