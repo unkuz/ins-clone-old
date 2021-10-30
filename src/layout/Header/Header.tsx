@@ -24,7 +24,7 @@ export const Header = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   return (
-    <header className="w-full h-[55px] border-b-[1px] border-ins-border">
+    <header className="fixed w-full h-[55px] border-b-[1px] border-ins-border z-10 bg-white">
       <div className="w-9/12 mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>

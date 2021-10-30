@@ -10,7 +10,7 @@ import { Icon } from '@/components/Icon';
 
 export const TaskBar: React.FC = () => {
   return (
-    <div className="h-[55px] sm:hidden border-t-[1px] border-[#dbdbdb] w-full fixed bottom-0 left-0 flex justify-evenly items-center">
+    <div className="z-10 bg-white h-[55px] sm:hidden border-t-[1px] border-[#dbdbdb] w-full fixed bottom-0 left-0 flex justify-evenly items-center">
       <Icon>
         <Home />
       </Icon>

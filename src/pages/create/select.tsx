@@ -10,7 +10,7 @@ const Select: NextPage = () => {
   return (
     <>
       {selected === AppSelected.NEW_POST && (
-        <div className="absolute inset-0 w-screen h-screen bg-black/70 z-10 flex justify-center items-center">
+        <div className="absolute inset-0 w-screen h-screen bg-black/70 z-50 flex justify-center items-center">
           <div className="absolute right-4 top-4">
             <Close
               className="cursor-pointer"
