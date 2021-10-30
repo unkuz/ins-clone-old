@@ -41,7 +41,7 @@ export const Header = () => {
             <ul className="flex justify-end space-x-5">
               <li className="hidden sm:block">
                 {selected === AppSelected.HOME ? (
-                  <Icon href="">
+                  <Icon href="/">
                     <HomeSelected
                       onClick={() => {
                         dispatch(selectedField(AppSelected.HOME));
@@ -49,7 +49,7 @@ export const Header = () => {
                     />
                   </Icon>
                 ) : (
-                  <Icon href="">
+                  <Icon href="/">
                     <Home
                       onClick={() => {
                         dispatch(selectedField(AppSelected.HOME));
@@ -60,7 +60,7 @@ export const Header = () => {
               </li>
               <li>
                 {selected === AppSelected.MESSENGER ? (
-                  <Icon href="">
+                  <Icon href="/direct/inbox">
                     <MessengerSelected
                       onClick={() => {
                         dispatch(selectedField(AppSelected.MESSENGER));
@@ -68,7 +68,7 @@ export const Header = () => {
                     />
                   </Icon>
                 ) : (
-                  <Icon href="">
+                  <Icon href="/direct/inbox">
                     <Messenger
                       onClick={() => {
                         dispatch(selectedField(AppSelected.MESSENGER));
@@ -79,7 +79,7 @@ export const Header = () => {
               </li>
               <li>
                 {selected === AppSelected.NEW_POST ? (
-                  <Icon href="">
+                  <Icon href="/create/select">
                     <NewPostSelected
                       onClick={() => {
                         dispatch(selectedField(AppSelected.NEW_POST));
@@ -87,7 +87,7 @@ export const Header = () => {
                     />
                   </Icon>
                 ) : (
-                  <Icon href="">
+                  <Icon href="/create/select">
                     <NewPost
                       onClick={() => {
                         dispatch(selectedField(AppSelected.NEW_POST));
@@ -98,7 +98,7 @@ export const Header = () => {
               </li>
               <li className="hidden sm:block">
                 {selected === AppSelected.FIND_PEOPLE ? (
-                  <Icon href="">
+                  <Icon href="/explore">
                     <FindPeopleSelected
                       onClick={() => {
                         dispatch(selectedField(AppSelected.FIND_PEOPLE));
@@ -106,7 +106,7 @@ export const Header = () => {
                     />
                   </Icon>
                 ) : (
-                  <Icon href="">
+                  <Icon href="/explore">
                     <FindPeople
                       onClick={() => {
                         dispatch(selectedField(AppSelected.FIND_PEOPLE));

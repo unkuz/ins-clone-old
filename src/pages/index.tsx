@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Feed />
-      <div className="w-[600px] h-[20px]"></div>
+
       <CardFeed />
     </div>
   );
