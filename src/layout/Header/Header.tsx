@@ -1,16 +1,28 @@
 import React from 'react';
 import Instagram from '@/assets/svg/instagram.svg';
 import Home from '@/assets/svg/home.svg';
+import HomeSelected from '@/assets/svg/home_selected.svg';
 import ActivityFeed from '@/assets/svg/activity_feed.svg';
+import ActivityFeedSelected from '@/assets/svg/activity_feed_selected.svg';
 import Messenger from '@/assets/svg/messenger.svg';
+import MessengerSelected from '@/assets/svg/messenger_selected.svg';
+
 import FindPeople from '@/assets/svg/find_people.svg';
+import FindPeopleSelected from '@/assets/svg/find_people_selected.svg';
 import NewPost from '@/assets/svg/new_post.svg';
+import NewPostSelected from '@/assets/svg/new_post_selected.svg';
 import { Icon } from '@/components/Icon';
 import { Search } from '@/layout/Header/Search';
 import Image from 'next/image';
 import instagram_logo from '@/assets/images/instagram_logo.png';
+import { useAppDispatch } from '@/store/hooks';
+import { selectedField } from '@/store/slice/appSlice';
+import { AppSelected } from '@/store/slice/appSlice';
+import { useAppSelector } from '@/store/hooks';
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
+  const selected = useAppSelector((state) => state.app.selected);
   return (
     <header className="w-full h-[55px] border-b-[1px] border-ins-border">
       <div className="w-9/12 mx-auto h-full flex justify-between items-center">
@@ -28,30 +40,100 @@ export const Header = () => {
           <nav>
             <ul className="flex justify-end space-x-5">
               <li className="hidden sm:block">
-                <Icon href="">
-                  <Home />
-                </Icon>
+                {selected === AppSelected.HOME ? (
+                  <Icon href="">
+                    <HomeSelected
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.HOME));
+                      }}
+                    />
+                  </Icon>
+                ) : (
+                  <Icon href="">
+                    <Home
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.HOME));
+                      }}
+                    />
+                  </Icon>
+                )}
               </li>
               <li>
-                <Icon href="">
-                  <Messenger />
-                </Icon>
+                {selected === AppSelected.MESSENGER ? (
+                  <Icon href="">
+                    <MessengerSelected
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.MESSENGER));
+                      }}
+                    />
+                  </Icon>
+                ) : (
+                  <Icon href="">
+                    <Messenger
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.MESSENGER));
+                      }}
+                    />
+                  </Icon>
+                )}
               </li>
               <li>
-                <Icon href="">
-                  <NewPost />
-                </Icon>
+                {selected === AppSelected.NEW_POST ? (
+                  <Icon href="">
+                    <NewPostSelected
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.NEW_POST));
+                      }}
+                    />
+                  </Icon>
+                ) : (
+                  <Icon href="">
+                    <NewPost
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.NEW_POST));
+                      }}
+                    />
+                  </Icon>
+                )}
               </li>
               <li className="hidden sm:block">
-                <Icon href="">
-                  <FindPeople />
-                </Icon>
+                {selected === AppSelected.FIND_PEOPLE ? (
+                  <Icon href="">
+                    <FindPeopleSelected
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.FIND_PEOPLE));
+                      }}
+                    />
+                  </Icon>
+                ) : (
+                  <Icon href="">
+                    <FindPeople
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.FIND_PEOPLE));
+                      }}
+                    />
+                  </Icon>
+                )}
               </li>
 
               <li className="hidden sm:block">
-                <Icon href="">
-                  <ActivityFeed />
-                </Icon>
+                {selected === AppSelected.ACTIVITY_FEED ? (
+                  <Icon href="">
+                    <ActivityFeedSelected
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.ACTIVITY_FEED));
+                      }}
+                    />
+                  </Icon>
+                ) : (
+                  <Icon href="">
+                    <ActivityFeed
+                      onClick={() => {
+                        dispatch(selectedField(AppSelected.ACTIVITY_FEED));
+                      }}
+                    />
+                  </Icon>
+                )}
               </li>
             </ul>
           </nav>
