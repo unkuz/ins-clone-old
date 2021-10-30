@@ -1,16 +1,14 @@
-import { NextPage } from 'next';
-import React from 'react';
+import { FC } from 'react';
+import { HomeSuggests } from '@/layout/Home/HomeSuggets';
 import { Feed } from '@/components/Feed/Feed';
 import { CardFeed } from '@/components/CardFeed/CardFeed';
 
-const Storie: NextPage = () => {
+export const HomeMain: FC = () => {
   return (
     <div>
       <Feed />
-      <div className="w-[600px] h-[20px]"></div>
+      <div className="h-[20px]"></div>
       <CardFeed />
     </div>
   );
 };
-
-export default Storie;

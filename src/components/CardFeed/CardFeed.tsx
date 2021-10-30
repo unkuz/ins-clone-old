@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stories } from '@/components/Stories/Stories';
+import { Story } from '@/components/Stories/Story';
 import MoreOptions from '@/assets/svg/more_options.svg';
 import { Icon } from '../Icon';
 import Like from '@/assets/svg/like.svg';
@@ -12,10 +12,10 @@ export const CardFeed = () => {
   return (
     <div>
       {/* header section */}
-      <div className="w-[600px] h-[70px] border-[1px] border-ins-border ">
+      <div className="w-[615px] h-[70px] border-[1px] border-ins-border ">
         <div className="w-11/12 h-full flex justify-between items-center mx-auto">
           <div className="scale-75">
-            <Stories />
+            <Story />
           </div>
           <Icon>
             <MoreOptions />
@@ -23,7 +23,7 @@ export const CardFeed = () => {
         </div>
       </div>
       {/* picture video section */}
-      <div className="w-[600px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
+      <div className="w-[615px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
         <div className="w-full h-[600px]"></div>
         {/* comment section */}
         <div className="w-full h-[235px] flex flex-col justify-end">

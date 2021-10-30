@@ -3,12 +3,16 @@ import { NextPage } from 'next';
 import Close from '@/assets/svg/close.svg';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectedField, AppSelected } from '@/store/slice/appSlice';
+import Head from 'next/head';
 
 const Select: NextPage = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   return (
     <>
+      <Head>
+        <title>Create Post</title>
+      </Head>
       {selected === AppSelected.NEW_POST && (
         <div className="absolute inset-0 w-screen h-screen bg-black/70 z-50 flex justify-center items-center">
           <div className="absolute right-4 top-4">
@@ -26,8 +30,11 @@ const Select: NextPage = () => {
             <div className="w-full h-full flex flex-col justify-center items-center ">
               <div></div>
               <div>Drag photos and videos here</div>
-              <div className="border-ins-border border-[1px] rounded-md px-3 py-1 bg-blue-500 text-white mt-5 cursor-pointer">
-                Select from computer
+              <div className="border-ins-border border-[1px] rounded-md px-10 py-1 bg-blue-500 text-white mt-5 cursor-pointer">
+                <input type="file" id="input" className="hidden" />
+                <label htmlFor="input" id="label">
+                  Choose File
+                </label>
               </div>
             </div>
           </div>

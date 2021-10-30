@@ -10,10 +10,12 @@ export enum AppSelected {
 
 interface AppState {
   selected: AppSelected;
+  isShowSearchPopUp: boolean;
 }
 
 const initialState: AppState = {
   selected: AppSelected.HOME,
+  isShowSearchPopUp: false,
 };
 
 export const appSlice = createSlice({
@@ -22,9 +24,12 @@ export const appSlice = createSlice({
     selectedField: (state, action) => {
       state.selected = action.payload;
     },
+    toogleSearch: (state) => {
+      state.isShowSearchPopUp = !state.isShowSearchPopUp;
+    },
   },
   initialState,
 });
 
-export const { selectedField } = appSlice.actions;
+export const { selectedField, toogleSearch } = appSlice.actions;
 export default appSlice.reducer;
