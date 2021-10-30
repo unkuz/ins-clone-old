@@ -3,7 +3,14 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['placekitten.com', 'fillmurray.com', 'www.fillmurray.com', 'picsum.photos'],
+    domains: [
+      'placekitten.com',
+      'fillmurray.com',
+      'www.fillmurray.com',
+      'picsum.photos',
+      'https://images.unsplash.com',
+      'images.unsplash.com',
+    ],
   },
   webpack: (config, options) => {
     config.module.rules.push({
