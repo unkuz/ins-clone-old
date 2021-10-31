@@ -9,128 +9,95 @@ import Messenger from '@/assets/svg/messenger.svg';
 import MessengerSelected from '@/assets/svg/messenger_selected.svg';
 import NewPost from '@/assets/svg/new_post.svg';
 import NewPostSelected from '@/assets/svg/new_post_selected.svg';
+import Direct from '@/assets/svg/direct.svg';
+import DirectSelected from '@/assets/svg/direct_selected.svg';
 import { Icon } from '@/components/Icon';
 import { Search } from '@/layout/Header/Search';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { AppSelected, selectedField, showSearch } from '@/store/slice/appSlice';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { AppRoutes } from '@/routes';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
   return (
-    <header className="fixed w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10 hidden md:block">
-      <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center">
-        <div className="flex-1">
-          <Icon size={30} href="/">
+    <header className="fixed bottom-0 md:top-0 w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10  md:block">
+      <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center  ">
+        <div className="flex-1 hidden md:flex">
+          <Icon size={30} href={AppRoutes.HOME_PAGE}>
             <Instagram />
           </Icon>
         </div>
-        <div className="flex-1 justify-center hidden sm:flex">
+        <div className="flex-1 justify-center hidden md:flex">
           <div onClick={() => dispatch(showSearch())}>
             <Search />
           </div>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 ">
           <nav>
-            <ul className="flex justify-end lg:space-x-5 md:space-x-3">
-              <li className="hidden sm:block">
-                {selected === AppSelected.HOME ? (
-                  <Icon size={22} href="/">
-                    <HomeSelected
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.HOME));
-                      }}
-                    />
+            <ul className="flex lg:justify-end lg:space-x-5 md:space-x-3 justify-evenly ">
+              <li className="">
+                {/* Home */}
+                <div
+                  onClick={() => {
+                    dispatch(selectedField(AppSelected.HOME));
+                  }}
+                >
+                  <Icon size={22} href={AppRoutes.HOME_PAGE}>
+                    {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
                   </Icon>
-                ) : (
-                  <Icon size={22} href="/">
-                    <Home
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.HOME));
-                      }}
-                    />
-                  </Icon>
-                )}
+                </div>
               </li>
               <li>
-                {selected === AppSelected.MESSENGER ? (
-                  <Icon size={22} href="/direct/inbox">
-                    <MessengerSelected
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.MESSENGER));
-                      }}
-                    />
+                {/* Messenger */}
+                <div
+                  onClick={() => {
+                    dispatch(selectedField(AppSelected.MESSENGER));
+                  }}
+                >
+                  <Icon size={22} href={AppRoutes.CHAT_PAGE}>
+                    {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
                   </Icon>
-                ) : (
-                  <Icon size={22} href="/direct/inbox">
-                    <Messenger
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.MESSENGER));
-                      }}
-                    />
-                  </Icon>
-                )}
+                </div>
               </li>
               <li>
-                {selected === AppSelected.NEW_POST ? (
-                  <Icon size={22} href="/create/select">
-                    <NewPostSelected
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.NEW_POST));
-                      }}
-                    />
+                {/* POST */}
+                <div
+                  onClick={() => {
+                    dispatch(selectedField(AppSelected.NEW_POST));
+                  }}
+                >
+                  <Icon size={22} href={AppRoutes.NEW_POST_PAGE}>
+                    {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
                   </Icon>
-                ) : (
-                  <Icon size={22} href="/create/select">
-                    <NewPost
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.NEW_POST));
-                      }}
-                    />
-                  </Icon>
-                )}
+                </div>
               </li>
-              <li className="hidden sm:block">
-                {selected === AppSelected.FIND_PEOPLE ? (
-                  <Icon size={22} href="/explore">
-                    <FindPeopleSelected
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.FIND_PEOPLE));
-                      }}
-                    />
+              {/* FIND PEOPLE */}
+              <li className="">
+                <div
+                  onClick={() => {
+                    dispatch(selectedField(AppSelected.FIND_PEOPLE));
+                  }}
+                >
+                  <Icon size={22} href={AppRoutes.EXPLORE_PAGE}>
+                    {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
                   </Icon>
-                ) : (
-                  <Icon size={22} href="/explore">
-                    <FindPeople
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.FIND_PEOPLE));
-                      }}
-                    />
-                  </Icon>
-                )}
+                </div>
               </li>
-
-              <li className="hidden sm:block">
-                {selected === AppSelected.ACTIVITY_FEED ? (
-                  <Icon size={22} href="">
-                    <ActivityFeedSelected
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.ACTIVITY_FEED));
-                      }}
-                    />
+              {/* Activity */}
+              <li className="">
+                <div
+                  onClick={() => {
+                    dispatch(selectedField(AppSelected.ACTIVITY_FEED));
+                  }}
+                >
+                  <Icon size={22} href={AppRoutes.ERR_PAGE}>
+                    {selected === AppSelected.ACTIVITY_FEED ? <ActivityFeedSelected /> : <ActivityFeed />}
                   </Icon>
-                ) : (
-                  <Icon size={22} href="">
-                    <ActivityFeed
-                      onClick={() => {
-                        dispatch(selectedField(AppSelected.ACTIVITY_FEED));
-                      }}
-                    />
-                  </Icon>
-                )}
+                </div>
               </li>
               <div
                 className="cursor-pointer"

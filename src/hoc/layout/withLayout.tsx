@@ -8,7 +8,7 @@ export const withLayout = (WrappedComponent: any) => {
         {header && <Header />}
         {header && <div className="sm:h-[80px]"></div>}
         {layout ? (
-          <div className="w-screen sm:w-[950px] mx-auto">
+          <div className="w-full md:w-[600px] lg:w-[950px] mx-auto">
             <WrappedComponent />
           </div>
         ) : (

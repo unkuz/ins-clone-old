@@ -4,6 +4,7 @@ import { Header } from '@/layout/Header/Header';
 import { TaskBar } from '@/layout/TaskBar/TaskBar';
 import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
 import { useAppSelector } from '@/store/hooks';
+import Post from '@/layout/Post/Post';
 
 export const Layout: React.FC = ({ children }) => {
   const isSearchPopUpShow = useAppSelector((state) => state.app.isShowSearchPopUp);
@@ -17,6 +18,7 @@ export const Layout: React.FC = ({ children }) => {
       <div className="w-full h-[100px]"></div> */}
 
       {/* PopUp */}
+      <Post />
     </div>
   );
 };

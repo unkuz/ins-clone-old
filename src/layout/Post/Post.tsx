@@ -6,7 +6,7 @@ import { selectedField, AppSelected } from '@/store/slice/appSlice';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const Select: NextPage = () => {
+const Post: NextPage = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
@@ -47,4 +47,4 @@ const Select: NextPage = () => {
   );
 };
 
-export default Select;
+export default Post;

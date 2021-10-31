@@ -21,42 +21,44 @@ export const CardFeed = () => {
   }, [comment, isComment]);
 
   return (
-    <div>
+    <>
       {/* header section */}
-      <div className="w-screen sm:w-[615px] h-[70px] border-[1px] border-ins-border ">
+      <div className="w-screen sm:w-[600px] h-[70px] border-[1px] border-ins-border ">
         <div className="w-11/12 h-full flex justify-between items-center mx-auto">
           <div className="scale-75">
             <Story />
           </div>
-          <Icon>
+          <Icon size={22}>
             <MoreOptions />
           </Icon>
         </div>
       </div>
       {/* picture video section */}
-      <div className="w-screen sm:w-[615px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
-        <ImageNextJS
-          width="full"
-          height={700}
-          quality
-          src="https://images.unsplash.com/photo-1635451321197-9c7528b18a5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
-        />
+      <div className="w-full sm:w-[600px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
+        <div className="">
+          <ImageNextJS
+            width="full"
+            height={700}
+            quality
+            src="https://images.unsplash.com/photo-1635451321197-9c7528b18a5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
+          />
+        </div>
         {/* comment section */}
-        <div className="w-screen sm:w-full h-auto flex flex-col justify-end">
+        <div className="w-full sm:w-full h-auto flex flex-col justify-end">
           <div className="w-11/12 h-[60px] mx-auto flex justify-between items-center">
             <div className="flex justify-center items-center space-x-3 ">
-              <Icon>
+              <Icon size={22}>
                 <Like />
               </Icon>
-              <Icon>
+              <Icon size={22}>
                 <Comment />
               </Icon>
-              <Icon>
+              <Icon size={22}>
                 <Share />
               </Icon>
             </div>
             <div className="">
-              <Icon>
+              <Icon size={22}>
                 <Save />
               </Icon>
             </div>
@@ -69,7 +71,7 @@ export const CardFeed = () => {
               can you do just...
             </p>
           </div>
-          <div className="w-screen sm:w-full h-5"></div>
+          <div className="w-full sm:w-full h-5"></div>
           <div className="border-t-[1px] border-ins-border w-full h-[55px]">
             <div className="w-11/12 h-full mx-auto flex justify-between items-center">
               <div className="cursor-pointer">
@@ -88,6 +90,6 @@ export const CardFeed = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

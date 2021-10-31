@@ -5,9 +5,9 @@ import { withLayout } from '@/hoc/layout/withLayout';
 
 const Home: React.FC = () => {
   return (
-    <div className="flex lg:justify-between justify-center ">
+    <div className="w-full flex justify-center lg:justify-between  ">
       <HomeMain />
-      <div className="hiden sm:block">
+      <div className="hidden sm:block">
         <HomeSuggests />
       </div>
     </div>
