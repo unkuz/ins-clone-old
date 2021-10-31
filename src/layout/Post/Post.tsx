@@ -26,7 +26,7 @@ const Post: NextPage = () => {
           <div className="absolute right-4 top-4">
             <Close className="cursor-pointer" />
           </div>
-          <div className="w-[400px] h-[500px] border-[1px] border-ins-border flex flex-col bg-white">
+          <div className="w-full h-full md:w-[400px] md:h-[500px] border-[1px] border-ins-border flex flex-col bg-white">
             <p className="w-full h-[50px] flex justify-center items-center border-b-[1px] border-ins-border">
               Create new post
             </p>

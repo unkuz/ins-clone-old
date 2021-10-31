@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import React from 'react';
 import Head from 'next/head';
+import { withLayout } from '@/hoc/layout/withLayout';
 
 const Explore: NextPage = () => {
   return (
@@ -13,4 +14,4 @@ const Explore: NextPage = () => {
   );
 };
 
-export default Explore;
+export default withLayout(Explore);

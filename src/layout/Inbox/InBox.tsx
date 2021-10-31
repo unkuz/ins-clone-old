@@ -13,9 +13,10 @@ const InBox: NextPage = () => {
       <Head>
         <title>Chat</title>
       </Head>
-      <div className="h-screen">
-        <div className="w-11/12 h-5/6 border-[1px] border-ins-border flex ">
-          <div className="w-5/12 h-full border-r-[1px] border-ins-border">
+      <div className="h-screen bg-yellow-500">
+        <div className="w-full h-5/6 border-[1px] border-ins-border flex bg-black/20 mx-auto  justify-between">
+          {/* Left */}
+          <div className="w-[300px] h-full border-r-[1px] border-ins-border bg-red-500/20">
             <div className="w-full h-[55px] flex justify-center items-center border-b-[1px] border-ins-border ">
               Cuzknothz
             </div>

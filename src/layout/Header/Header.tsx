@@ -24,7 +24,7 @@ export const Header = () => {
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
   return (
-    <header className="fixed bottom-0 md:top-0 w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10  md:block">
+    <header className="fixed bottom-0 md:top-0 w-full h-[60px] md:h-[50px] border-b-[1px] border-ins-border bg-white z-10  md:block">
       <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center  ">
         <div className="flex-1 hidden md:flex">
           <Icon size={30} href={AppRoutes.HOME_PAGE}>
@@ -58,9 +58,12 @@ export const Header = () => {
                     dispatch(selectedField(AppSelected.MESSENGER));
                   }}
                 >
-                  <Icon size={22} href={AppRoutes.CHAT_PAGE}>
-                    {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
-                  </Icon>
+                  <div className="relative">
+                    <div className="w-[10px] right-0 top-0 h-[10px] rounded-full bg-red-500 animate-pulse absolute"></div>
+                    <Icon size={22} href={AppRoutes.CHAT_PAGE}>
+                      {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
+                    </Icon>
+                  </div>
                 </div>
               </li>
               <li>
