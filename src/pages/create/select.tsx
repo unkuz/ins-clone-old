@@ -4,24 +4,27 @@ import Close from '@/assets/svg/close.svg';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectedField, AppSelected } from '@/store/slice/appSlice';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const Select: NextPage = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
+  const router = useRouter();
   return (
     <>
       <Head>
         <title>Create Post</title>
       </Head>
       {selected === AppSelected.NEW_POST && (
-        <div className="absolute inset-0 w-screen h-screen bg-black/70 z-20 flex justify-center items-center">
+        <div
+          onClick={() => {
+            dispatch(selectedField(AppSelected.HOME));
+            router.push('/');
+          }}
+          className="absolute inset-0 w-screen h-screen bg-black/70 z-20 flex justify-center items-center"
+        >
           <div className="absolute right-4 top-4">
-            <Close
-              className="cursor-pointer"
-              onClick={() => {
-                dispatch(selectedField(AppSelected.HOME));
-              }}
-            />
+            <Close className="cursor-pointer" />
           </div>
           <div className="w-[400px] h-[500px] border-[1px] border-ins-border flex flex-col bg-white">
             <p className="w-full h-[50px] flex justify-center items-center border-b-[1px] border-ins-border">

@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "coenraads.bracket-pair-colorizer",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "riazxrazor.html-to-jsx",
+    "xabikos.javascriptsnippets",
+    "monokai.theme-monokai-pro-vscode",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode"
+  ]
+}
