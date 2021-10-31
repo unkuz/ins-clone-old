@@ -6,11 +6,12 @@ import * as yup from 'yup';
 import Image from 'next/image';
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
 import router from 'next/router';
+import { InputFormText } from '@/components/ui/InputFormText';
 
 const schema = yup
   .object({
     username: yup.string().min(3).max(20).required(),
-    email: yup.string().email(),
+    email: yup.string().email().required(),
     password: yup.string().min(5).max(20).required(),
   })
   .required();
@@ -25,7 +26,7 @@ const SignUp: NextPage = () => {
   });
   const onSubmit = (data: any) => console.log(data);
   return (
-    <div className="w-full min-h-full flex justify-center items-center">
+    <div className="w-screen sm:w-full min-h-screen flex justify-center items-center">
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
         <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start relative">
@@ -35,27 +36,15 @@ const SignUp: NextPage = () => {
           <div className="h-[90px]"></div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              {...register('username')}
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-              placeholder="Username"
-            />
+            <InputFormText {...register('username')} placeholder="Username" />
             <div className="h-[20px] text-red-500">
               <p>{errors.username?.message}</p>
             </div>
-            <input
-              {...register('email')}
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-              placeholder="Email"
-            />
+            <InputFormText {...register('email')} placeholder="Email" />
             <div className="h-[20px] text-red-500">
               <p>{errors.email?.message}</p>
             </div>
-            <input
-              {...register('password')}
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-              placeholder="Password"
-            />
+            <InputFormText {...register('password')} placeholder="Password" />
             <div className="h-[20px] text-red-500">
               <p>{errors.password?.message}</p>
             </div>

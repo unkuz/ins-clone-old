@@ -15,7 +15,7 @@ export const Icon: React.FC<IProps> = ({ children, href, size }) => {
     );
   }
   return (
-    <div className={`${size === 'l' ? 'w-[22px]' : 'w-[21px]'} cursor-pointer`}>
+    <div className={`${size === 'l' ? 'w-[22px]' : 'w-[21px]'} cursor-pointer select-none`}>
       <Link href={href}>{children}</Link>
     </div>
   );
