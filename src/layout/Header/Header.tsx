@@ -26,7 +26,7 @@ export const Header = () => {
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
   return (
-    <header className="fixed w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10">
+    <header className="fixed w-full h-[50px] border-b-[1px] border-ins-border bg-white z-10 hidden sm:block">
       <div className="w-[950px] mx-auto h-full flex justify-between items-center">
         <div className="flex-1">
           <Icon>

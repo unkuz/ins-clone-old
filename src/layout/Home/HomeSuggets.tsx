@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const HomeSuggests: React.FC = () => {
   return (
-    <div className="w-[315px] h-[500px] flex flex-col relative border-[1px] border-ins-border">
+    <div className="w-[315px] h-[500px] sm:flex flex-col relative border-[1px] border-ins-border hidden">
       <div className="w-11/12 mx-auto">
         <div className="w-full h-[70px] flex justify-between items-center border-b-[1px] border-ins-border">
           <div className="h-[45px] w-[45px] overflow-hidden rounded-full relative">

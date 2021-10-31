@@ -22,7 +22,7 @@ export const CardFeed = () => {
   return (
     <div>
       {/* header section */}
-      <div className="w-[615px] h-[70px] border-[1px] border-ins-border ">
+      <div className="w-full sm:w-[615px] h-[70px] border-[1px] border-ins-border ">
         <div className="w-11/12 h-full flex justify-between items-center mx-auto">
           <div className="scale-75">
             <Story />
