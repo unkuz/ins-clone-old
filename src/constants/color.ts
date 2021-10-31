@@ -1,1 +1,3 @@
-export enum Color {}
+export const customColor = {
+  'ins-border': '#dbdbdb',
+};

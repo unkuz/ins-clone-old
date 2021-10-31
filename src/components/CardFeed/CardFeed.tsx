@@ -34,7 +34,7 @@ export const CardFeed = () => {
       </div>
       {/* picture video section */}
       <div className="w-[615px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
-        <div className="w-full h-[600px] relative">
+        <div className="w-full h-[700px] relative">
           <Image
             layout="fill"
             className="object-cover"

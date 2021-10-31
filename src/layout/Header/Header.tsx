@@ -141,6 +141,14 @@ export const Header = () => {
                   </Icon>
                 )}
               </li>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  router.push('/auth/signin');
+                }}
+              >
+                Sign In
+              </div>
             </ul>
           </nav>
         </div>
