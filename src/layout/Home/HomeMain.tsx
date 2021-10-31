@@ -9,7 +9,7 @@ export const HomeMain: FC = () => {
     <div>
       <Feed />
       <div className="h-[20px]"></div>
-      {'fksdhafjklsdhjklfhkj'.split('').map((i) => (
+      {'fksdhj'.split('').map((i) => (
         <>
           <CardFeed key={uuid()} />
           <div className="h-4"></div>

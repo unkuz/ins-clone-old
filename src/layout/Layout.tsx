@@ -12,7 +12,7 @@ export const Layout: React.FC = ({ children }) => {
       <HeadMeta />
       {isSearchPopUpShow && <SearchPopUp />}
       <Header />
-      <div className="w-full sm:w-[950px] mx-auto">{children}</div>
+      <div className="w-screen sm:w-[950px] mx-auto">{children}</div>
       <TaskBar />
       <div className="w-full h-[100px]"></div>
 

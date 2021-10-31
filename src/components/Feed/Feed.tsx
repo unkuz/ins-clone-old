@@ -3,7 +3,7 @@ import { StoriesWrapper } from '@/components/Stories/StoriesWrapper';
 
 export const Feed = () => {
   return (
-    <div className="">
+    <div className="w-full ">
       <StoriesWrapper />
     </div>
   );
