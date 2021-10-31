@@ -10,6 +10,7 @@ module.exports = {
       'picsum.photos',
       'https://images.unsplash.com',
       'images.unsplash.com',
+      'unsplash.com',
     ],
   },
   webpack: (config, options) => {

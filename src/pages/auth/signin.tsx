@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { InputFormText } from '@/components/ui/InputFormText';
+import { InputFormText } from '@/components/Common/InputFormText';
 
 const schema = yup
   .object({
@@ -25,7 +25,7 @@ const SignIn: NextPage = () => {
   });
   const onSubmit = (data: any) => console.log(data);
   return (
-    <div className="w-screen sm:w-full min-h-screen flex justify-center items-center">
+    <div className="w-screen sm:w-full h-screen flex justify-center items-center ">
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
         <div className="h-[400px] border-[1px] border-ins-border flex flex-col items-center justify-start">

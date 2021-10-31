@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import Image from 'next/image';
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
 import router from 'next/router';
-import { InputFormText } from '@/components/ui/InputFormText';
+import { InputFormText } from '@/components/Common/InputFormText';
 
 const schema = yup
   .object({

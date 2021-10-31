@@ -8,6 +8,7 @@ import Comment from '@/assets/svg/comment.svg';
 import Save from '@/assets/svg/save.svg';
 import Emoji from '@/assets/svg/emoji.svg';
 import Image from 'next/image';
+import { ImageNextJS } from '@/components/Common/ImageNextJS';
 
 export const CardFeed = () => {
   const [comment, setComment] = useState('');
@@ -34,15 +35,12 @@ export const CardFeed = () => {
       </div>
       {/* picture video section */}
       <div className="w-screen sm:w-[615px] border-ins-border border-[1px] border-t-0 flex flex-col justify-end">
-        <div className="w-full h-[700px] relative">
-          <Image
-            layout="fill"
-            className="object-cover"
-            alt=""
-            quality={100}
-            src="https://images.unsplash.com/photo-1635451321197-9c7528b18a5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
-          />
-        </div>
+        <ImageNextJS
+          width="full"
+          height={700}
+          quality
+          src="https://images.unsplash.com/photo-1635451321197-9c7528b18a5d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
+        />
         {/* comment section */}
         <div className="w-screen sm:w-full h-auto flex flex-col justify-end">
           <div className="w-11/12 h-[60px] mx-auto flex justify-between items-center">

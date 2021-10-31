@@ -4,19 +4,21 @@ import Link from 'next/link';
 interface IProps {
   children: ReactNode;
   href?: string;
-  size?: string;
+  size?: number;
 }
 export const Icon: React.FC<IProps> = ({ children, href, size }) => {
   if (!href) {
     return (
-      <>
-        <div className={`${size === 'l' ? 'w-[22px]' : 'w-[21px]'} cursor-pointer`}>{children}</div>
-      </>
+      <div style={{ width: size + 'px', height: size + 'px' }} className="cursor-pointer">
+        {children}
+      </div>
     );
   }
   return (
-    <div className={`${size === 'l' ? 'w-[22px]' : 'w-[21px]'} cursor-pointer select-none`}>
-      <Link href={href}>{children}</Link>
+    <div style={{ width: size + 'px', height: size + 'px' }} className="cursor-pointer">
+      <Link href={href} passHref>
+        <a>{children}</a>
+      </Link>
     </div>
   );
 };
