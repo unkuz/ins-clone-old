@@ -1,11 +1,22 @@
-import React from 'react';
-import { NextPage } from 'next';
+import React, { useLayoutEffect } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { InputFormText } from '@/components/Common/InputFormText';
+import { getProviders, signIn, useSession } from 'next-auth/react';
+import { AppRoutes } from '@/routes';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const providers = await getProviders();
+  return {
+    props: {
+      providers,
+    },
+  };
+};
 
 const schema = yup
   .object({
@@ -14,8 +25,15 @@ const schema = yup
   })
   .required();
 
-const SignIn: NextPage = () => {
+const SignIn: React.FC = ({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
+  const { status } = useSession();
+  useLayoutEffect(() => {
+    if (status === 'authenticated') {
+      router.push(AppRoutes.HOME_PAGE);
+    }
+  }, [status, router]);
+
   const {
     register,
     handleSubmit,
@@ -28,7 +46,7 @@ const SignIn: NextPage = () => {
     <div className="w-screen sm:w-full h-screen flex justify-center items-center ">
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
-        <div className="h-[400px] border-[1px] border-ins-border flex flex-col items-center justify-start">
+        <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start">
           <div className="w-[170px] mt-16">
             <Image src={require('@/assets/images/instagram_logo.png')} alt="" className="object-cover" />
           </div>
@@ -50,7 +68,18 @@ const SignIn: NextPage = () => {
             />
           </form>
           <div className="h-[10px]"></div>
-          <div className="cursor-pointer text-blue-500">Forgotten your password?</div>
+          <div className="cursor-pointer text-blue-500">Or</div>
+          <div className="h-[30px] w-[230px]  flex justify-between items-center">
+            {Object.values(providers).map((i: any) => (
+              <div
+                onClick={() => signIn(i?.id)}
+                key={i?.id}
+                className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
+              >
+                SignIn w {i?.name}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="h-[30px]"></div>
         <div className="h-[60px] border-[1px] border-ins-border flex justify-center items-center">

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { NextPage } from 'next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Image from 'next/image';
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { InputFormText } from '@/components/Common/InputFormText';
+import { useSession } from 'next-auth/react';
+import { AppRoutes } from '@/routes';
 
 const schema = yup
   .object({
@@ -17,6 +19,14 @@ const schema = yup
   .required();
 
 const SignUp: NextPage = () => {
+  const router = useRouter();
+  const { status } = useSession();
+  useLayoutEffect(() => {
+    if (status === 'authenticated') {
+      router.push(AppRoutes.HOME_PAGE);
+    }
+  }, [status, router]);
+
   const {
     register,
     handleSubmit,
