@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
         </div>
         {/* Right header as TaskBar */}
         <div className="flex-1 mx-auto">
-          <nav className="flex w-full h-full justify-evenly md:justify-end  items-center ">
+          <nav className="flex w-full h-full justify-evenly md:space-x-2 lg:space-x-3 md:justify-end  items-center ">
             {/* Home */}
             <div
               onClick={() => {
