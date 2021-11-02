@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage, ref } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,6 +13,8 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
+
 const auth = getAuth(app);
 const GoogleProvider = new GoogleAuthProvider();
 const FacebookProvider = new FacebookAuthProvider();
@@ -24,4 +27,4 @@ const FacebookProvider = new FacebookAuthProvider();
 //   return querySnapshot;
 // };
 
-export { app, db, auth, FacebookProvider, GoogleProvider };
+export { app, db, auth, storage, FacebookProvider, GoogleProvider };

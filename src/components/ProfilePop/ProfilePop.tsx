@@ -11,7 +11,12 @@ export const ProfilePop: React.FC = () => {
     <div>
       <div className="w-[250px] h-[180px]  flex flex-col justify-between border-[1px] border-ins-border bg-white">
         <div className="w-full h-full  flex flex-col justify-around">
-          <div className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center">
+          <div
+            onClick={() => {
+              router.push(AppRoutes.PROFILE);
+            }}
+            className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center"
+          >
             <div className="ml-3 mr-5">
               <svg
                 aria-label="Profile"
