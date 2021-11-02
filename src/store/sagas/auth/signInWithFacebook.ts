@@ -1,8 +1,8 @@
 import { auth, FacebookProvider } from '@/helpers/firebase';
 import {
-  signInWithFacebookFailure,
-  signInWithFacebookRequest,
-  signInWithFacebookSucess,
+    signInWithFacebookFailure,
+    signInWithFacebookRequest,
+    signInWithFacebookSucess
 } from '@/store/reducers/authSlice';
 import { FacebookAuthProvider, signInWithPopup } from 'firebase/auth';
 import { call, put, takeLatest } from 'redux-saga/effects';

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Header } from '@/layout/Header/Header';
+import React from 'react';
 
 export const withLayout = (WrappedComponent: any) => {
   const WithLayout = ({ header, footer, layout }: any) => {

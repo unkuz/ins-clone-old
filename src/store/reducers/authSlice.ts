@@ -1,4 +1,4 @@
-import { EmailPassword, ISignInWithEmail, ISignUpWithEmail } from '@/models/auth';
+import { EmailPassword, ISignUpWithEmail } from '@/models/auth';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {

@@ -1,5 +1,5 @@
-import React from 'react';
 import { StoriesWrapper } from '@/components/Stories/StoriesWrapper';
+import React from 'react';
 
 export const Feed = () => {
   return (

@@ -100,7 +100,11 @@ export const Header: React.FC = () => {
                 }}
               >
                 <Icon size={22} href={AppRoutes.ERR_PAGE}>
-                  {selected === AppSelected.ACTIVITY_FEED ? <ActivityFeedSelected /> : <ActivityFeed />}
+                  {selected === AppSelected.ACTIVITY_FEED ? (
+                    <ActivityFeedSelected />
+                  ) : (
+                    <ActivityFeed />
+                  )}
                 </Icon>
               </div>
             )}
@@ -109,13 +113,24 @@ export const Header: React.FC = () => {
 
             {'authenticated' === 'authenticated' ? (
               <div onClick={() => {}}>
-                <ImageNextJS width={25} height={25} circle src="https://placekitten.com/200/200" pointer />
+                <ImageNextJS
+                  width={25}
+                  height={25}
+                  circle
+                  src="https://placekitten.com/200/200"
+                  pointer
+                />
               </div>
             ) : (
               <>
                 <div className="w-[22px] h-[22px] relative cursor-pointer" onClick={() => {}}>
                   <Icon size={22}>
-                    <Image src={require('@/assets/images/login.png')} alt="" layout="fill" className="object-contain" />
+                    <Image
+                      src={require('@/assets/images/login.png')}
+                      alt=""
+                      layout="fill"
+                      className="object-contain"
+                    />
                   </Icon>
                 </div>
               </>

@@ -1,7 +1,6 @@
-import React from 'react';
-import { toogleSearch } from '@/store/reducers/appSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { hiddenSearch } from '@/store/reducers/appSlice';
+import React from 'react';
 
 export const SearchPopUp = () => {
   const dispatch = useAppDispatch();

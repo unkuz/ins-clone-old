@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Story } from '@/components/Stories/Story';
-import MoreOptions from '@/assets/svg/more_options.svg';
-import { Icon } from '../Icon';
-import Like from '@/assets/svg/like.svg';
-import Share from '@/assets/svg/share.svg';
 import Comment from '@/assets/svg/comment.svg';
-import Save from '@/assets/svg/save.svg';
 import Emoji from '@/assets/svg/emoji.svg';
-import Image from 'next/image';
+import Like from '@/assets/svg/like.svg';
+import MoreOptions from '@/assets/svg/more_options.svg';
+import Save from '@/assets/svg/save.svg';
+import Share from '@/assets/svg/share.svg';
 import { ImageNextJS } from '@/components/Common/ImageNextJS';
+import { Story } from '@/components/Stories/Story';
+import React, { useEffect, useState } from 'react';
+import { Icon } from '../Icon';
 
 export const CardFeed = () => {
   const [comment, setComment] = useState('');
@@ -67,8 +66,8 @@ export const CardFeed = () => {
           <div className="w-11/12 mx-auto h-auto">
             <span className="text-blue-500 cursor-pointer text-sm">wavesaudio </span>
             <p>
-              🌌 Could you create depth in your mixes WITHOUT any reverbs, delays and spatial effects? We’ll prove how
-              can you do just...
+              🌌 Could you create depth in your mixes WITHOUT any reverbs, delays and spatial
+              effects? We’ll prove how can you do just...
             </p>
           </div>
           <div className="w-full sm:w-full h-5"></div>

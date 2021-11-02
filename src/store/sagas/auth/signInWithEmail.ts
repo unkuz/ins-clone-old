@@ -1,13 +1,13 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { auth } from '@/helpers/firebase';
+import { EmailPassword } from '@/models/auth';
 import {
-  signInWithEmailRequest,
   signInWithEmailFailure,
+  signInWithEmailRequest,
   signInWithEmailSuccess,
 } from '@/store/reducers/authSlice';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/helpers/firebase';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { EmailPassword } from '@/models/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* onSignInWithEmail(action: PayloadAction<EmailPassword>): any {
   try {

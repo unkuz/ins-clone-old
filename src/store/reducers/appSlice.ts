@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export enum AppSelected {
   HOME = 'HOME',
@@ -37,5 +37,5 @@ export const appSlice = createSlice({
   initialState,
 });
 
-export const { selectedField, toogleSearch, hiddenSearch,showSearch } = appSlice.actions;
+export const { selectedField, toogleSearch, hiddenSearch, showSearch } = appSlice.actions;
 export default appSlice.reducer;

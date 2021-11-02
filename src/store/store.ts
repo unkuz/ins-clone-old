@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers/rootReducer';
-import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from '@/store/sagas/rootSaga';
+import { configureStore } from '@reduxjs/toolkit';
+import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducers/rootReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
