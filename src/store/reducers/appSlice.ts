@@ -11,11 +11,13 @@ export enum AppSelected {
 interface AppState {
   selected: AppSelected;
   isShowSearchPopUp: boolean;
+  isProfilePopUp: boolean;
 }
 
 const initialState: AppState = {
   selected: AppSelected.HOME,
   isShowSearchPopUp: false,
+  isProfilePopUp: false,
 };
 
 export const appSlice = createSlice({
@@ -33,9 +35,13 @@ export const appSlice = createSlice({
     showSearch: (state) => {
       state.isShowSearchPopUp = true;
     },
+    toogleProfileShow: (state) => {
+      state.isProfilePopUp = !state.isProfilePopUp;
+    },
   },
   initialState,
 });
 
-export const { selectedField, toogleSearch, hiddenSearch, showSearch } = appSlice.actions;
+export const { selectedField, toogleSearch, hiddenSearch, showSearch, toogleProfileShow } =
+  appSlice.actions;
 export default appSlice.reducer;

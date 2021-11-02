@@ -1,14 +1,14 @@
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
 import { ISignUpWithEmail } from '@/models/auth';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { createUserWithEmailRequest } from '@/store/reducers/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { createUserWithEmailRequest } from '@/store/reducers/authSlice';
-import { useAppDispatch } from '@/store/hooks';
 
 const schema = yup
   .object({
@@ -21,6 +21,12 @@ const schema = yup
 const SignUp: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.auth.status);
+  useEffect(() => {
+    if (isAuth === 'authenticated') {
+      router.push('/');
+    }
+  }, [isAuth, router]);
 
   const {
     register,

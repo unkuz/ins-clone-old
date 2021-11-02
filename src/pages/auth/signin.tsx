@@ -1,5 +1,5 @@
 import { ISignInWithEmail } from '@/models/auth';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store';
 import {
   signInWithEmailRequest,
   signInWithFacebookRequest,
@@ -8,7 +8,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -22,6 +22,14 @@ const schema = yup
 const SignIn: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.auth.status);
+  const errMsg = useAppSelector((state) => state.auth.errMsg);
+  useEffect(() => {
+    if (isAuth === 'authenticated') {
+      router.push('/');
+    }
+  }, [isAuth, router]);
+
   const {
     register,
     handleSubmit,
@@ -42,7 +50,9 @@ const SignIn: React.FC = () => {
               className="object-cover"
             />
           </div>
-          <div className="h-[90px]"></div>
+          <div className="h-[90px] flex justify-center items-center text-red-500">
+            <p>{errMsg && errMsg}</p>
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -61,7 +71,7 @@ const SignIn: React.FC = () => {
               className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
             />
 
-            <div className="h-[20px] text-red-500">
+            <div className="h-[30px] text-red-500">
               <p>{errors.password?.message}</p>
             </div>
             <input

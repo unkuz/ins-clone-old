@@ -1,5 +1,5 @@
 import { auth } from '@/helpers/firebase';
-import { signOutFailure, signOutSuccess } from '@/store/reducers/authSlice';
+import { signOutFailure, signOutRequest, signOutSuccess } from '@/store/reducers/authSlice';
 import { signOut as FireSignOut } from 'firebase/auth';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
@@ -13,5 +13,5 @@ function* onSignOut(): any {
 }
 
 export function* signOut() {
-  yield takeLatest(signOut.toString(), onSignOut);
+  yield takeLatest(signOutRequest.toString(), onSignOut);
 }
