@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers/rootReducer';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
+import { rootSaga } from '@/store/sagas/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
@@ -11,8 +12,10 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(),
+    }).concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 // Infer the `RootState` and `AppDispatch` types from the store itself

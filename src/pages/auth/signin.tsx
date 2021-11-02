@@ -1,22 +1,27 @@
-import React, { useLayoutEffect } from 'react';
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
-import { useForm } from 'react-hook-form';
+import { ISignInWithEmail } from '@/models/auth';
+import { useAppDispatch } from '@/store/hooks';
+import {
+  signInWithEmailRequest,
+  signInWithFacebookRequest,
+  signInWithGoogleRequest,
+} from '@/store/reducers/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { InputFormText } from '@/components/Common/InputFormText';
-import { AppRoutes } from '@/routes';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const schema = yup
   .object({
     email: yup.string().email().required(),
-    password: yup.string().min(5).max(20).required(),
+    password: yup.string().min(6).max(20).required(),
   })
   .required();
 
 const SignIn: React.FC = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -24,23 +29,38 @@ const SignIn: React.FC = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: ISignInWithEmail) => dispatch(signInWithEmailRequest(data));
   return (
     <div className="w-screen sm:w-full h-screen flex justify-center items-center ">
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
         <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start">
           <div className="w-[170px] mt-16">
-            <Image src={require('@/assets/images/instagram_logo.png')} alt="" className="object-cover" />
+            <Image
+              src={require('@/assets/images/instagram_logo.png')}
+              alt=""
+              className="object-cover"
+            />
           </div>
           <div className="h-[90px]"></div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <InputFormText {...register('email')} placeholder="Email" />
+            <input
+              {...register('email')}
+              placeholder="Email"
+              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+            />
+
             <div className="h-[20px] text-red-500">
               <p>{errors.email?.message}</p>
             </div>
-            <InputFormText {...register('password')} placeholder="Password" />
+            <input
+              {...register('password')}
+              placeholder="Password"
+              type="password"
+              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+            />
+
             <div className="h-[20px] text-red-500">
               <p>{errors.password?.message}</p>
             </div>
@@ -53,8 +73,17 @@ const SignIn: React.FC = () => {
           <div className="h-[10px]"></div>
           <div className="cursor-pointer text-blue-500">Or</div>
           <div className="h-[30px] w-[230px]  flex justify-between items-center">
-            <div className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400">
-              SignIn w
+            <div
+              onClick={() => dispatch(signInWithGoogleRequest())}
+              className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
+            >
+              SignIn w Google
+            </div>
+            <div
+              onClick={() => dispatch(signInWithFacebookRequest())}
+              className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
+            >
+              SignIn w Facebook
             </div>
           </div>
         </div>

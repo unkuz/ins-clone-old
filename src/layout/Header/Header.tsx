@@ -109,7 +109,7 @@ export const Header: React.FC = () => {
 
             {'authenticated' === 'authenticated' ? (
               <div onClick={() => {}}>
-                <ImageNextJS width={25} height={25} circle src={''} pointer />
+                <ImageNextJS width={25} height={25} circle src="https://placekitten.com/200/200" pointer />
               </div>
             ) : (
               <>

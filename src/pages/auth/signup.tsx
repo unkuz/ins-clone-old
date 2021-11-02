@@ -1,24 +1,26 @@
-import React, { useLayoutEffect } from 'react';
-import { NextPage } from 'next';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import Image from 'next/image';
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
+import { ISignUpWithEmail } from '@/models/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { NextPage } from 'next';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { InputFormText } from '@/components/Common/InputFormText';
-import { AppRoutes } from '@/routes';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { createUserWithEmailRequest } from '@/store/reducers/authSlice';
+import { useAppDispatch } from '@/store/hooks';
 
 const schema = yup
   .object({
     username: yup.string().min(3).max(20).required(),
     email: yup.string().email().required(),
-    password: yup.string().min(5).max(20).required(),
+    password: yup.string().min(6).max(20).required(),
   })
   .required();
 
 const SignUp: NextPage = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -27,27 +29,47 @@ const SignUp: NextPage = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: ISignUpWithEmail) => dispatch(createUserWithEmailRequest(data));
   return (
     <div className="w-screen sm:w-full min-h-screen flex justify-center items-center">
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
         <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start relative">
           <div className="w-[170px] mt-16">
-            <Image src={require('@/assets/images/instagram_logo.png')} alt="" className="object-cover" />
+            <Image
+              src={require('@/assets/images/instagram_logo.png')}
+              alt=""
+              className="object-cover"
+            />
           </div>
           <div className="h-[90px]"></div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <InputFormText {...register('username')} placeholder="Username" />
+            <input
+              {...register('username')}
+              placeholder="Username"
+              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+            />
+
             <div className="h-[20px] text-red-500">
               <p>{errors.username?.message}</p>
             </div>
-            <InputFormText {...register('email')} placeholder="Email" />
+            <input
+              {...register('email')}
+              placeholder="Email"
+              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+            />
+
             <div className="h-[20px] text-red-500">
               <p>{errors.email?.message}</p>
             </div>
-            <InputFormText {...register('password')} placeholder="Password" />
+            <input
+              {...register('password')}
+              placeholder="Password"
+              type="password"
+              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+            />
+
             <div className="h-[20px] text-red-500">
               <p>{errors.password?.message}</p>
             </div>

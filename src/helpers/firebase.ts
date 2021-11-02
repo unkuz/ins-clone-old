@@ -1,14 +1,6 @@
 import { initializeApp } from 'firebase/app';
-
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  FacebookAuthProvider,
-} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -21,15 +13,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const GGprovider = new GoogleAuthProvider();
-const FBprovider = new FacebookAuthProvider();
+const GoogleProvider = new GoogleAuthProvider();
+const FacebookProvider = new FacebookAuthProvider();
 
-const getUser = async () => {
-  const querySnapshot = await getDocs(collection(db, 'users'));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
-  return querySnapshot;
-};
+// const getUser = async () => {
+//   const querySnapshot = await getDocs(collection(db, 'users'));
+//   querySnapshot.forEach((doc) => {
+//     console.log(`${doc.id} => ${doc.data()}`);
+//   });
+//   return querySnapshot;
+// };
 
-export { app, db, getUser, auth, GGprovider, FBprovider };
+export { app, db, auth, FacebookProvider, GoogleProvider };

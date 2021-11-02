@@ -1,8 +1,6 @@
 import { all } from 'redux-saga/effects';
-function* hello() {
-  console.log('fshfjds');
-}
+import { authSaga } from '@/store/sagas/auth';
 
 export function* rootSaga() {
-  yield all([]);
+  yield all([authSaga()]);
 }
