@@ -6,17 +6,7 @@ import * as yup from 'yup';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { InputFormText } from '@/components/Common/InputFormText';
-import { getProviders, signIn, useSession } from 'next-auth/react';
 import { AppRoutes } from '@/routes';
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const providers = await getProviders();
-  return {
-    props: {
-      providers,
-    },
-  };
-};
 
 const schema = yup
   .object({
@@ -25,15 +15,8 @@ const schema = yup
   })
   .required();
 
-const SignIn: React.FC = ({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const SignIn: React.FC = () => {
   const router = useRouter();
-  const { status } = useSession();
-  useLayoutEffect(() => {
-    if (status === 'authenticated') {
-      router.push(AppRoutes.HOME_PAGE);
-    }
-  }, [status, router]);
-
   const {
     register,
     handleSubmit,
@@ -70,15 +53,9 @@ const SignIn: React.FC = ({ providers }: InferGetServerSidePropsType<typeof getS
           <div className="h-[10px]"></div>
           <div className="cursor-pointer text-blue-500">Or</div>
           <div className="h-[30px] w-[230px]  flex justify-between items-center">
-            {Object.values(providers).map((i: any) => (
-              <div
-                onClick={() => signIn(i?.id)}
-                key={i?.id}
-                className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
-              >
-                SignIn w {i?.name}
-              </div>
-            ))}
+            <div className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400">
+              SignIn w
+            </div>
           </div>
         </div>
         <div className="h-[30px]"></div>

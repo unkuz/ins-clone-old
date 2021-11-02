@@ -7,7 +7,6 @@ import Image from 'next/image';
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
 import { useRouter } from 'next/router';
 import { InputFormText } from '@/components/Common/InputFormText';
-import { useSession } from 'next-auth/react';
 import { AppRoutes } from '@/routes';
 
 const schema = yup
@@ -20,12 +19,6 @@ const schema = yup
 
 const SignUp: NextPage = () => {
   const router = useRouter();
-  const { status } = useSession();
-  useLayoutEffect(() => {
-    if (status === 'authenticated') {
-      router.push(AppRoutes.HOME_PAGE);
-    }
-  }, [status, router]);
 
   const {
     register,

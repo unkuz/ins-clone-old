@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { toogleSearch } from '@/store/slice/appSlice';
+import { toogleSearch } from '@/store/reducers/appSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
 import { useAppSelector } from '@/store/hooks';

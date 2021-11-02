@@ -14,15 +14,12 @@ import { Icon } from '@/components/Icon';
 import { Search } from '@/layout/Header/Search';
 import { AppRoutes } from '@/routes';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { AppSelected, selectedField, showSearch } from '@/store/slice/appSlice';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { AppSelected, selectedField, showSearch } from '@/store/reducers/appSlice';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 export const Header: React.FC = () => {
-  const { data, status } = useSession();
-  console.log(data);
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   const router = useRouter();
@@ -57,7 +54,7 @@ export const Header: React.FC = () => {
 
             {/* Messenger */}
 
-            {status === 'authenticated' && (
+            {'authenticated' === 'authenticated' && (
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.MESSENGER));
@@ -71,7 +68,7 @@ export const Header: React.FC = () => {
 
             {/* POST */}
 
-            {status === 'authenticated' && (
+            {'authenticated' === 'authenticated' && (
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.NEW_POST));
@@ -96,7 +93,7 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Activity */}
-            {status === 'authenticated' && (
+            {'authenticated' === 'authenticated' && (
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.ACTIVITY_FEED));
@@ -110,13 +107,13 @@ export const Header: React.FC = () => {
 
             {/* Profile Picture or Sign In */}
 
-            {data && data.user && data.user.image && status === 'authenticated' ? (
-              <div onClick={() => signOut()}>
-                <ImageNextJS width={25} height={25} circle src={data?.user?.image} pointer />
+            {'authenticated' === 'authenticated' ? (
+              <div onClick={() => {}}>
+                <ImageNextJS width={25} height={25} circle src={''} pointer />
               </div>
             ) : (
               <>
-                <div className="w-[22px] h-[22px] relative cursor-pointer" onClick={() => signIn()}>
+                <div className="w-[22px] h-[22px] relative cursor-pointer" onClick={() => {}}>
                   <Icon size={22}>
                     <Image src={require('@/assets/images/login.png')} alt="" layout="fill" className="object-contain" />
                   </Icon>

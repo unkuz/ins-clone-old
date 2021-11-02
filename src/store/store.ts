@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './slice/rootReducer';
+import rootReducer from './reducers/rootReducer';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 

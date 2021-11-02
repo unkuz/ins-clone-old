@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import Close from '@/assets/svg/close.svg';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { selectedField, AppSelected } from '@/store/slice/appSlice';
+import { selectedField, AppSelected } from '@/store/reducers/appSlice';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
