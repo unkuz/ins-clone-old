@@ -18,7 +18,7 @@ function* onCreateUserWithEmail(action: PayloadAction<EmailPassword>): any {
       action.payload.password
     );
     const { user } = userCredential;
-    console.log(user);
+
     yield put(createUserWithEmailSuccess(user));
   } catch (err) {
     yield put(createUserWithEmailFailure(err));

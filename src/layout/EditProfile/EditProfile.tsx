@@ -1,11 +1,9 @@
-import { withLayout } from '@/hoc/layout/withLayout';
 import React from 'react';
-import Image from 'next/image';
 
 const EditProfile = () => {
   return (
     <div className="absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 z-30 ">
-      <div className="w-screen md:w-[400px] mx-auto border-[1px] border-ins-border bg-white ">
+      <div className="w-screen md:w-[400px] mx-auto border-[1px] border-ins-border bg-white  rounded-lg overflow-hidden shadow-lg">
         {/* top */}
         <div className="w-full h-[50px] flex justify-around items-center border-b-[1px] border-ins-border">
           <p className="">Edit Profile</p>

@@ -1,9 +1,5 @@
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React from 'react';
-
-import { toogleSearch } from '@/store/reducers/appSlice';
-import { useAppDispatch } from '@/store/hooks';
-import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
-import { useAppSelector } from '@/store/hooks';
 
 export const Search: React.FC = () => {
   const dispatch = useAppDispatch();

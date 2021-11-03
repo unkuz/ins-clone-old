@@ -6,24 +6,27 @@ export enum AppSelected {
   NEW_POST = 'NEW_POST',
   FIND_PEOPLE = 'FIND_PEOPLE',
   ACTIVITY_FEED = 'ACTIVITY_FEED',
+  PROFILE = 'PROFILE',
 }
 
 interface AppState {
   selected: AppSelected;
   isShowSearchPopUp: boolean;
-  isProfilePopUp: boolean;
-  selectedOnProfilePage: 'POSTS' | 'SAVED';
-  isEditProfilePopUp: boolean;
-  isActivityFeedPopUp: boolean;
+  profile: {
+    isProfilePopUp: boolean;
+    selectedOnProfilePage: 'POSTS' | 'SAVED';
+    isEditProfilePopUp: boolean;
+  };
+  activity: {
+    isActivityFeedPopUp: boolean;
+  };
 }
 
 const initialState: AppState = {
   selected: AppSelected.HOME,
   isShowSearchPopUp: false,
-  isProfilePopUp: false,
-  selectedOnProfilePage: 'POSTS',
-  isEditProfilePopUp: false,
-  isActivityFeedPopUp: false,
+  profile: { isProfilePopUp: false, selectedOnProfilePage: 'POSTS', isEditProfilePopUp: false },
+  activity: { isActivityFeedPopUp: false },
 };
 
 export const appSlice = createSlice({
@@ -42,25 +45,25 @@ export const appSlice = createSlice({
       state.isShowSearchPopUp = true;
     },
     toogleProfileShow: (state) => {
-      state.isProfilePopUp = !state.isProfilePopUp;
+      state.profile.isProfilePopUp = !state.profile.isProfilePopUp;
     },
     setSelectedOnProfilePageIsSaved: (state) => {
-      state.selectedOnProfilePage = 'SAVED';
+      state.profile.selectedOnProfilePage = 'SAVED';
     },
     setSelectedOnProfilePageIsPosts: (state) => {
-      state.selectedOnProfilePage = 'POSTS';
+      state.profile.selectedOnProfilePage = 'POSTS';
     },
     setEditProfilePopUp: (state) => {
-      state.isEditProfilePopUp = true;
+      state.profile.isEditProfilePopUp = true;
     },
     setEditProfileHidden: (state) => {
-      state.isEditProfilePopUp = false;
+      state.profile.isEditProfilePopUp = false;
     },
     setActivityFeedPopUp: (state) => {
-      state.isActivityFeedPopUp = true;
+      state.activity.isActivityFeedPopUp = true;
     },
     setActivityFeedHidden: (state) => {
-      state.isActivityFeedPopUp = false;
+      state.activity.isActivityFeedPopUp = false;
     },
   },
   initialState,

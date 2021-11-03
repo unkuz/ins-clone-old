@@ -1,28 +1,24 @@
-import React from 'react';
-import { HeadMeta } from '@/layout/HeadMeta';
-import { Header } from '@/layout/Header/Header';
-import { TaskBar } from '@/layout/TaskBar/TaskBar';
-import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
-import { useAppSelector, useAppDispatch } from '@/store';
-import Post from '@/layout/Post/Post';
 import { ProfilePop } from '@/components/ProfilePop/ProfilePop';
+import { HeadMeta } from '@/layout/HeadMeta';
+import Post from '@/layout/Post/Post';
+import { useAppDispatch, useAppSelector } from '@/store';
 import {
   AppSelected,
-  toogleProfileShow,
-  setEditProfileHidden,
   setActivityFeedHidden,
+  setEditProfileHidden,
+  toogleProfileShow,
 } from '@/store/reducers/appSlice';
-import EditProfile from './EditProfile/EditProfile';
+import React from 'react';
 import { ActivityFeed } from './ActivityFeed/ActivityFeed';
+import EditProfile from './EditProfile/EditProfile';
 
 export const Layout: React.FC = ({ children }) => {
   const isSearchPopUpShow = useAppSelector((state) => state.app.isShowSearchPopUp);
-  const isProfilePopUpShow = useAppSelector((state) => state.app.isProfilePopUp);
-  const isEditProfilePopUpShow = useAppSelector((state) => state.app.isEditProfilePopUp);
-  const isActivityFeedPopUpShow = useAppSelector((state) => state.app.isActivityFeedPopUp);
+  const isProfilePopUpShow = useAppSelector((state) => state.app.profile.isProfilePopUp);
+  const isEditProfilePopUpShow = useAppSelector((state) => state.app.profile.isEditProfilePopUp);
+  const isActivityFeedPopUpShow = useAppSelector((state) => state.app.activity.isActivityFeedPopUp);
   const selected = useAppSelector((state) => state.app.selected);
   const dispatch = useAppDispatch();
-  console.log(isEditProfilePopUpShow);
 
   return (
     <div

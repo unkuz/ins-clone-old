@@ -1,9 +1,8 @@
-import { Icon } from '@/components/Icon';
-import React from 'react';
-import Image from 'next/image';
 import Comment from '@/assets/svg/comment.svg';
-
 import Like from '@/assets/svg/like.svg';
+import { Icon } from '@/components/Icon';
+import Image from 'next/image';
+import React from 'react';
 
 interface IProps {
   likes: number;

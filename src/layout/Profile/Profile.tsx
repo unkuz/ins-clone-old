@@ -1,22 +1,15 @@
 import { ImageNextJS } from '@/components/Common/ImageNextJS';
 import { withLayout } from '@/hoc/layout/withLayout';
 import { useAppDispatch, useAppSelector } from '@/store';
-import Comment from '@/assets/svg/comment.svg';
-
-import Like from '@/assets/svg/like.svg';
-
-import React, { useState } from 'react';
-import Image from 'next/image';
 import {
   setEditProfilePopUp,
   setSelectedOnProfilePageIsPosts,
   setSelectedOnProfilePageIsSaved,
 } from '@/store/reducers/appSlice';
-import router from 'next/router';
-import { AppRoutes } from '@/routes';
-import { Icon } from '@/components/Icon';
+import React from 'react';
 import { MiniPost } from './MiniPost';
-
+import Image from 'next/image';
+import { RandomImage } from './RandomImage';
 enum SelectedField {
   POSTS = 'POSTS',
   SAVED = 'SAVED',
@@ -24,7 +17,7 @@ enum SelectedField {
 
 const Profile = () => {
   const user = useAppSelector((state) => state.auth.user);
-  const selectedField = useAppSelector((state) => state.app.selectedOnProfilePage);
+  const selectedField = useAppSelector((state) => state.app.profile.selectedOnProfilePage);
   const dispatch = useAppDispatch();
 
   return (
@@ -34,12 +27,23 @@ const Profile = () => {
         <div className="h-[150px]  flex justify-between ">
           {/* left profile picture */}
           <div className="w-[150px] h-full  flex justify-center items-center">
-            <ImageNextJS src={user?.photoURL} alt="" pointer circle width={110} height={110} />
+            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden cursor-pointer">
+              <Image
+                src={`${
+                  user && user.photoURL
+                    ? user.photoURL
+                    : 'https://avatars.dicebear.com/api/human/' + Math.random() + '.svg'
+                }`}
+                alt=""
+                layout="fill"
+                className="object-cover"
+              />
+            </div>
           </div>
           {/* right info */}
           <div className="w-[200px] md:w-[400px] h-full flex flex-col">
             <div className="w-full h-[70px] flex justify-center items-center text-xl">
-              Cuzknothz
+              {user?.email}
             </div>
             <div className="w-full h-full flex justify-between items-center ">
               <div className="h-full flex-1 flex flex-col justify-center items-center">

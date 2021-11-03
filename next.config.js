@@ -12,6 +12,7 @@ module.exports = {
       'images.unsplash.com',
       'unsplash.com',
       'lh3.googleusercontent.com',
+      'avatars.dicebear.com',
     ],
   },
   webpack: (config, options) => {
