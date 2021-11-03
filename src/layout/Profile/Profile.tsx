@@ -1,4 +1,3 @@
-import { ImageNextJS } from '@/components/Common/ImageNextJS';
 import { withLayout } from '@/hoc/layout/withLayout';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
@@ -6,10 +5,9 @@ import {
   setSelectedOnProfilePageIsPosts,
   setSelectedOnProfilePageIsSaved,
 } from '@/store/reducers/appSlice';
+import Image from 'next/image';
 import React from 'react';
 import { MiniPost } from './MiniPost';
-import Image from 'next/image';
-import { RandomImage } from './RandomImage';
 enum SelectedField {
   POSTS = 'POSTS',
   SAVED = 'SAVED',
@@ -22,12 +20,12 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="md:w-10/12 mx-auto w-full">
+      <div className="w-full md:w-10/12 mx-auto">
         {/* top */}
-        <div className="h-[150px]  flex justify-between ">
+        <div className="h-[150px] flex justify-between ">
           {/* left profile picture */}
-          <div className="w-[150px] h-full  flex justify-center items-center">
-            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden cursor-pointer">
+          <div className="w-[120px] md:w-[150px] h-full  flex justify-center items-center">
+            <div className="relative w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-full overflow-hidden cursor-pointer">
               <Image
                 src={`${
                   user && user.photoURL
@@ -41,31 +39,31 @@ const Profile = () => {
             </div>
           </div>
           {/* right info */}
-          <div className="w-[200px] md:w-[400px] h-full flex flex-col">
+          <div className="w-[100px] md:w-[400px] h-full flex flex-col">
             <div className="w-full h-[70px] flex justify-center items-center text-xl">
               {user?.email}
             </div>
             <div className="w-full h-full flex justify-between items-center ">
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="text-xl">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base">{Math.round(Math.random() * 100)}</p>
                 <p>Posts</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="text-xl cursor-pointer">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base cursor-pointer">{Math.round(Math.random() * 100)}</p>
                 <p>Followers</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="text-xl cursor-pointer">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base cursor-pointer">{Math.round(Math.random() * 100)}</p>
                 <p>Following</p>
               </div>
             </div>
           </div>
-          <div className="w-[150px] h-full flex justify-center items-center">
+          <div className="w-[100px] md:w-[150px] h-full flex justify-center items-center">
             <div
               onClick={() => {
                 dispatch(setEditProfilePopUp());
               }}
-              className="cursor-pointer border-[1px] border-ins-border py-2 px-5 rounded-lg hover:bg-blue-300 bg-white"
+              className="cursor-pointer border-[1px] border-ins-border py-2 md:px-5 px-2 rounded-lg hover:bg-blue-300 bg-white"
             >
               Edit Profile
             </div>
@@ -75,19 +73,19 @@ const Profile = () => {
         <div className="sticky top-0">
           <hr />
           <div>
-            <div className="h-[50px] flex md:space-x-48 space-x-8 justify-center items-center">
+            <div className="h-[50px] flex md:space-x-48 space-x-4 justify-center items-center">
               <div
                 onClick={() => dispatch(setSelectedOnProfilePageIsPosts())}
                 className={`${
                   selectedField === 'POSTS' ? 'bg-blue-300' : ''
-                } border-[1px] cursor-pointer border-ins-border py-2 px-16 rounded-lg hover:bg-blue-300`}
+                } border-[1px] cursor-pointer border-ins-border py-2 md:px-16 px-10 rounded-lg hover:bg-blue-300`}
               >
                 Posts
               </div>
               <div
                 onClick={() => dispatch(setSelectedOnProfilePageIsSaved())}
                 className={`${selectedField === SelectedField.SAVED ? 'bg-blue-300' : ''}
-              border-[1px] cursor-pointer border-ins-border py-2 px-16 rounded-lg hover:bg-blue-300`}
+              border-[1px] cursor-pointer border-ins-border py-2 md:px-16 px-10 rounded-lg hover:bg-blue-300`}
               >
                 Saved
               </div>

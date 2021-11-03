@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
   const isProfilePopUpShow = useAppSelector((state) => state.app.profile.isProfilePopUp);
   const router = useRouter();
   return (
-    <header className="fixed bottom-0 md:top-0 w-full h-[60px] md:h-[50px] border-b-[1px] border-ins-border bg-white z-10  md:block">
+    <header className="fixed bottom-0 md:top-0 w-full h-[60px] md:h-[50px] border-b-[1px] border-ins-border bg-white z-20  md:block">
       <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center  ">
         {/* LEft Part Header */}
         <div className="flex-1 hidden md:flex">

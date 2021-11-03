@@ -38,7 +38,7 @@ export const Layout: React.FC = ({ children }) => {
       <div className="w-full h-[100px]"></div> */}
 
       {/* PopUp */}
-      <Post />
+      <Post header layout footer />
       {isProfilePopUpShow && (
         <>
           <div

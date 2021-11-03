@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { selectedField, AppSelected } from '@/store/reducers/appSlice';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { withLayout } from '@/hoc/layout/withLayout';
 
 const Post: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ const Post: NextPage = () => {
           <div className="absolute right-4 top-4">
             <Close className="cursor-pointer" />
           </div>
-          <div className="w-full h-full md:w-[400px] md:h-[500px] border-[1px] border-ins-border flex flex-col bg-white">
+          <div className="w-full h-[400px] md:w-[400px] md:h-[500px] border-[1px] border-ins-border flex flex-col bg-white">
             <p className="w-full h-[50px] flex justify-center items-center border-b-[1px] border-ins-border">
               Create new post
             </p>
@@ -47,4 +48,4 @@ const Post: NextPage = () => {
   );
 };
 
-export default Post;
+export default withLayout(Post);
