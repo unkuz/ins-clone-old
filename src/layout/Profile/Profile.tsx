@@ -45,15 +45,15 @@ const Profile = () => {
             </div>
             <div className="w-full h-full flex justify-between items-center ">
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base">{user?.posts.length}</p>
                 <p>Posts</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base cursor-pointer">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base cursor-pointer">{user?.followers.length}</p>
                 <p>Followers</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base cursor-pointer">{Math.round(Math.random() * 100)}</p>
+                <p className="md:text-base cursor-pointer">{user?.following.length}</p>
                 <p>Following</p>
               </div>
             </div>

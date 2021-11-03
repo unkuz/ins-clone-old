@@ -58,11 +58,10 @@ export const Header: React.FC = () => {
             <div
               onClick={() => {
                 dispatch(selectedField(AppSelected.HOME));
+                router.push(AppRoutes.HOME_PAGE);
               }}
             >
-              <Icon size={22} href={AppRoutes.HOME_PAGE}>
-                {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
-              </Icon>
+              <Icon size={22}>{selected === AppSelected.HOME ? <HomeSelected /> : <Home />}</Icon>
             </div>
 
             {/* Messenger */}
@@ -71,9 +70,10 @@ export const Header: React.FC = () => {
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.MESSENGER));
+                  router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
-                <Icon size={22} href={AppRoutes.CHAT_PAGE}>
+                <Icon size={22}>
                   {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
                 </Icon>
               </div>
@@ -85,9 +85,10 @@ export const Header: React.FC = () => {
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.NEW_POST));
+                  router.push(AppRoutes.NEW_POST_PAGE);
                 }}
               >
-                <Icon size={22} href={AppRoutes.NEW_POST_PAGE}>
+                <Icon size={22}>
                   {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
                 </Icon>
               </div>
@@ -98,9 +99,10 @@ export const Header: React.FC = () => {
             <div
               onClick={() => {
                 dispatch(selectedField(AppSelected.FIND_PEOPLE));
+                router.push(AppRoutes.EXPLORE_PAGE);
               }}
             >
-              <Icon size={22} href={AppRoutes.EXPLORE_PAGE}>
+              <Icon size={22}>
                 {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
               </Icon>
             </div>
@@ -139,7 +141,7 @@ export const Header: React.FC = () => {
                   onClick={() => dispatch(toogleProfileShow())}
                 >
                   <div onClick={() => {}}>
-                    {user.photoURL ? (
+                    {user && user.photoURL ? (
                       <ImageNextJS width={25} height={25} circle src={user?.photoURL} pointer />
                     ) : (
                       <Icon size={22}>

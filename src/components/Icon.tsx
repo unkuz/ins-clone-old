@@ -6,19 +6,10 @@ interface IProps {
   href?: string;
   size?: number;
 }
-export const Icon: React.FC<IProps> = ({ children, href, size }) => {
-  if (!href) {
-    return (
-      <div style={{ width: size + 'px', height: size + 'px' }} className="cursor-pointer">
-        {children}
-      </div>
-    );
-  }
+export const Icon: React.FC<IProps> = ({ children, size }) => {
   return (
     <div style={{ width: size + 'px', height: size + 'px' }} className="cursor-pointer">
-      <Link href={href} passHref>
-        <a>{children}</a>
-      </Link>
+      {children}
     </div>
   );
 };

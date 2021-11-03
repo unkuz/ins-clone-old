@@ -27,9 +27,9 @@ const Post: NextPage = () => {
       reader.readAsDataURL(fileList[0]);
     }
     reader.onload = (readerEvent) => {
-      const rs = readerEvent.target;
-      if (rs) {
-        setSelectedFile(readerEvent.target.result);
+      const dataUri = readerEvent.target?.result;
+      if (dataUri) {
+        setSelectedFile(dataUri);
       }
     };
   };

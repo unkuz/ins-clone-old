@@ -1,15 +1,15 @@
-import { EmailPassword, ISignUpWithEmail } from '@/utils/types/auth';
+import { EmailPassword, ISignUpWithEmail, User } from '@/utils/types/auth';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
-  user: any;
+  user: User | undefined;
   status: 'loading' | 'authenticated' | 'unauthenticated';
   errMsg: string;
 }
 
 const initialState: AuthState = {
   errMsg: '',
-  user: {},
+  user: undefined,
   status: 'unauthenticated',
 };
 
@@ -27,7 +27,7 @@ const authSlice = createSlice({
       state.errMsg = '';
     },
     createUserWithEmailFailure: (state, action) => {
-      state.user = {};
+      state.user = undefined;
       state.status = 'unauthenticated';
       state.errMsg = action.payload.code;
     },
@@ -42,12 +42,12 @@ const authSlice = createSlice({
     },
     signInWithGoogleFailure: (state, action) => {
       state.status = 'unauthenticated';
-      state.user = {};
+      state.user = undefined;
       state.errMsg = action.payload.code;
     },
     signInWithFacebookRequest: (state) => {
       state.status = 'loading';
-      state.user = {};
+      state.user = undefined;
       state.errMsg = '';
     },
     signInWithFacebookSucess: (state, action) => {
@@ -57,7 +57,7 @@ const authSlice = createSlice({
     },
     signInWithFacebookFailure: (state, action) => {
       state.status = 'unauthenticated';
-      state.user = {};
+      state.user = undefined;
       state.errMsg = action.payload.code;
     },
     signInWithEmailRequest: (state, action: PayloadAction<EmailPassword>) => {
@@ -71,7 +71,7 @@ const authSlice = createSlice({
     },
     signInWithEmailFailure: (state, action) => {
       state.status = 'unauthenticated';
-      state.user = {};
+      state.user = undefined;
       state.errMsg = action.payload.code;
     },
     signOutRequest: (state) => {
@@ -80,11 +80,18 @@ const authSlice = createSlice({
     },
     signOutSuccess: (state) => {
       state.status = 'unauthenticated';
-      state.user = {};
+      state.user = undefined;
       state.errMsg = '';
     },
     signOutFailure: (state, action) => {
       state.status = 'loading';
+      state.errMsg = action.payload.err;
+    },
+    editProfileRequest: (state, action) => {},
+    editProfileSuccess: (state, action) => {
+      state.user = action.payload.user;
+    },
+    editProfileFailure: (state, action) => {
       state.errMsg = action.payload.err;
     },
   },
@@ -107,4 +114,7 @@ export const {
   signOutFailure,
   signOutRequest,
   signOutSuccess,
+  editProfileRequest,
+  editProfileFailure,
+  editProfileSuccess,
 } = authSlice.actions;
