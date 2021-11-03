@@ -61,7 +61,9 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.HOME_PAGE);
               }}
             >
-              <Icon size={22}>{selected === AppSelected.HOME ? <HomeSelected /> : <Home />}</Icon>
+              <div className="w-[22px] h-[22px]">
+                {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
+              </div>
             </div>
 
             {/* Messenger */}
@@ -73,9 +75,9 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
-                <Icon size={22}>
+                <div className="w-[22px] h-[22px]">
                   {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
-                </Icon>
+                </div>
               </div>
             )}
 
@@ -88,9 +90,9 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.NEW_POST_PAGE);
                 }}
               >
-                <Icon size={22}>
+                <div className="w-[22px] h-[22px]">
                   {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
-                </Icon>
+                </div>
               </div>
             )}
 
@@ -102,9 +104,9 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.EXPLORE_PAGE);
               }}
             >
-              <Icon size={22}>
+              <div className="w-[22px] h-[22px]">
                 {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
-              </Icon>
+              </div>
             </div>
 
             {/* Activity */}
@@ -115,13 +117,13 @@ export const Header: React.FC = () => {
                   dispatch(setActivityFeedPopUp());
                 }}
               >
-                <Icon size={22}>
+                <div className="w-[22px] h-[22px]">
                   {selected === AppSelected.ACTIVITY_FEED ? (
                     <ActivityFeedSelected />
                   ) : (
                     <ActivityFeed />
                   )}
-                </Icon>
+                </div>
               </div>
             )}
 
@@ -144,9 +146,9 @@ export const Header: React.FC = () => {
                     {user && user.photoURL ? (
                       <ImageNextJS width={25} height={25} circle src={user?.photoURL} pointer />
                     ) : (
-                      <Icon size={22}>
+                      <div className="w-[22px] h-[22px]">
                         <RandomImage />
-                      </Icon>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -158,14 +160,14 @@ export const Header: React.FC = () => {
                       router.push(AppRoutes.SIGN_IN);
                     }}
                   >
-                    <Icon size={22}>
+                    <div className="w-[22px] h-[22px]">
                       <Image
                         src={require('@/assets/images/login.png')}
                         alt=""
                         layout="fill"
                         className="object-contain"
                       />
-                    </Icon>
+                    </div>
                   </div>
                 </>
               )}

@@ -61,7 +61,7 @@ const Post: NextPage = () => {
               <div>
                 {selectedFile && (
                   <img
-                    src={selectedFile}
+                    // src={selectedFile}
                     alt=""
                     className={`object-cover w-[300px] h-[300px]`}
                     onClick={() => setSelectedFile((prev) => null)}
