@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import {
   AppSelected,
   selectedField,
+  setActivityFeedPopUp,
   showSearch,
   toogleProfileShow,
 } from '@/store/reducers/appSlice';
@@ -109,9 +110,10 @@ export const Header: React.FC = () => {
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.ACTIVITY_FEED));
+                  dispatch(setActivityFeedPopUp());
                 }}
               >
-                <Icon size={22} href={AppRoutes.ERR_PAGE}>
+                <Icon size={22}>
                   {selected === AppSelected.ACTIVITY_FEED ? (
                     <ActivityFeedSelected />
                   ) : (

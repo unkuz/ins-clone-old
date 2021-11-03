@@ -14,6 +14,7 @@ interface AppState {
   isProfilePopUp: boolean;
   selectedOnProfilePage: 'POSTS' | 'SAVED';
   isEditProfilePopUp: boolean;
+  isActivityFeedPopUp: boolean;
 }
 
 const initialState: AppState = {
@@ -22,6 +23,7 @@ const initialState: AppState = {
   isProfilePopUp: false,
   selectedOnProfilePage: 'POSTS',
   isEditProfilePopUp: false,
+  isActivityFeedPopUp: false,
 };
 
 export const appSlice = createSlice({
@@ -54,6 +56,12 @@ export const appSlice = createSlice({
     setEditProfileHidden: (state) => {
       state.isEditProfilePopUp = false;
     },
+    setActivityFeedPopUp: (state) => {
+      state.isActivityFeedPopUp = true;
+    },
+    setActivityFeedHidden: (state) => {
+      state.isActivityFeedPopUp = false;
+    },
   },
   initialState,
 });
@@ -68,5 +76,7 @@ export const {
   setSelectedOnProfilePageIsPosts,
   setEditProfileHidden,
   setEditProfilePopUp,
+  setActivityFeedHidden,
+  setActivityFeedPopUp,
 } = appSlice.actions;
 export default appSlice.reducer;

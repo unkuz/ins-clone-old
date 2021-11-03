@@ -1,6 +1,10 @@
 import { ImageNextJS } from '@/components/Common/ImageNextJS';
 import { withLayout } from '@/hoc/layout/withLayout';
 import { useAppDispatch, useAppSelector } from '@/store';
+import Comment from '@/assets/svg/comment.svg';
+
+import Like from '@/assets/svg/like.svg';
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import {
@@ -10,6 +14,8 @@ import {
 } from '@/store/reducers/appSlice';
 import router from 'next/router';
 import { AppRoutes } from '@/routes';
+import { Icon } from '@/components/Icon';
+import { MiniPost } from './MiniPost';
 
 enum SelectedField {
   POSTS = 'POSTS',
@@ -89,28 +95,28 @@ const Profile = () => {
         <div className="grid grid-cols-3 gap-1">
           {/* Only post show */}
           {selectedField === 'POSTS' &&
-            'fsdjafsdafsdfhasdfsfaf'.split('').map((i) => (
-              <div key={i} className="bg-blue-300 min-h-[100px] aspect-w-1 aspect-h-1 relative">
-                <Image
-                  src="https://images.unsplash.com/photo-1633809787036-b06db15939c4?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8Qm4tRGpyY0Jyd298fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                  alt=""
-                  layout="fill"
-                  className="object-cover"
+            'fsdjafsdafsdfhasdfsfaf'
+              .split('')
+              .map((i) => (
+                <MiniPost
+                  key={i}
+                  likes={50}
+                  comments={56}
+                  imageUrl="https://images.unsplash.com/photo-1633809787036-b06db15939c4?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8Qm4tRGpyY0Jyd298fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 />
-              </div>
-            ))}
+              ))}
           {/* Only saved show */}
           {selectedField === 'SAVED' &&
-            'fsdjahasadgssdfsfaf'.split('').map((i) => (
-              <div key={i} className="bg-blue-300 min-h-[100px] aspect-w-1 aspect-h-1 relative">
-                <Image
-                  src="https://images.unsplash.com/photo-1635807013625-d4c06fad0a29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
-                  alt=""
-                  layout="fill"
-                  className="object-cover"
+            'fsdjahasadgssdfsfaf'
+              .split('')
+              .map((i) => (
+                <MiniPost
+                  key={i}
+                  likes={500989}
+                  comments={56}
+                  imageUrl="https://images.unsplash.com/photo-1635807013625-d4c06fad0a29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
                 />
-              </div>
-            ))}
+              ))}
         </div>
       </div>
     </div>

@@ -6,13 +6,20 @@ import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
 import { useAppSelector, useAppDispatch } from '@/store';
 import Post from '@/layout/Post/Post';
 import { ProfilePop } from '@/components/ProfilePop/ProfilePop';
-import { AppSelected, toogleProfileShow, setEditProfileHidden } from '@/store/reducers/appSlice';
+import {
+  AppSelected,
+  toogleProfileShow,
+  setEditProfileHidden,
+  setActivityFeedHidden,
+} from '@/store/reducers/appSlice';
 import EditProfile from './EditProfile/EditProfile';
+import { ActivityFeed } from './ActivityFeed/ActivityFeed';
 
 export const Layout: React.FC = ({ children }) => {
   const isSearchPopUpShow = useAppSelector((state) => state.app.isShowSearchPopUp);
   const isProfilePopUpShow = useAppSelector((state) => state.app.isProfilePopUp);
   const isEditProfilePopUpShow = useAppSelector((state) => state.app.isEditProfilePopUp);
+  const isActivityFeedPopUpShow = useAppSelector((state) => state.app.isActivityFeedPopUp);
   const selected = useAppSelector((state) => state.app.selected);
   const dispatch = useAppDispatch();
   console.log(isEditProfilePopUpShow);
@@ -20,7 +27,9 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <div
       className={`${
-        selected === AppSelected.NEW_POST || isEditProfilePopUpShow === true
+        selected === AppSelected.NEW_POST ||
+        isEditProfilePopUpShow === true ||
+        isActivityFeedPopUpShow === true
           ? 'max-h-screen overflow-hidden'
           : ''
       } text-xs w-full relative`}
@@ -56,6 +65,17 @@ export const Layout: React.FC = ({ children }) => {
           <div
             className="absolute inset-0 z-20 bg-black/20"
             onClick={() => dispatch(setEditProfileHidden())}
+          ></div>
+        </>
+      )}
+      {isActivityFeedPopUpShow && (
+        <>
+          <div className="" onClick={() => {}}>
+            <ActivityFeed />
+          </div>
+          <div
+            className="absolute inset-0 z-20 bg-black/20"
+            onClick={() => dispatch(setActivityFeedHidden())}
           ></div>
         </>
       )}
