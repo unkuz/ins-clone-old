@@ -1,5 +1,5 @@
 import { auth } from '@/helpers/firebase';
-import { EmailPassword } from '@/models/auth';
+import { EmailPassword } from '@/types/auth';
 import {
   signInWithEmailFailure,
   signInWithEmailRequest,

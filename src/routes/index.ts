@@ -6,5 +6,6 @@ export enum AppRoutes {
   SIGN_UP = '/auth/signup',
   ERR_PAGE = '/404',
   EXPLORE_PAGE = '/explore',
-  PROFILE = "/profile"
+  PROFILE = '/profile',
+  EDIT_PROFILE = '/account/edit',
 }

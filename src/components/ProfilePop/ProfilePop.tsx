@@ -3,13 +3,14 @@ import { useAppDispatch } from '@/store';
 import { signOutRequest } from '@/store/reducers/authSlice';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { setSelectedOnProfilePageIsSaved } from '@/store/reducers/appSlice';
 
 export const ProfilePop: React.FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   return (
     <div>
-      <div className="w-[250px] h-[180px]  flex flex-col justify-between border-[1px] border-ins-border bg-white">
+      <div className="w-[250px] h-[150px]  flex flex-col justify-between border-[1px] border-ins-border bg-white">
         <div className="w-full h-full  flex flex-col justify-around">
           <div
             onClick={() => {
@@ -32,7 +33,13 @@ export const ProfilePop: React.FC = () => {
             </div>
             <div>Profile</div>
           </div>
-          <div className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center">
+          <div
+            onClick={() => {
+              dispatch(setSelectedOnProfilePageIsSaved());
+              router.push(AppRoutes.PROFILE);
+            }}
+            className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center"
+          >
             <div className="ml-3 mr-5">
               <svg
                 aria-label="Saved"
@@ -48,22 +55,7 @@ export const ProfilePop: React.FC = () => {
             </div>
             <div>Saved</div>
           </div>
-          <div className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center">
-            <div className="ml-3 mr-5">
-              <svg
-                aria-label="Settings"
-                color="#262626"
-                fill="#262626"
-                height="16"
-                role="img"
-                viewBox="0 0 32 32"
-                width="16"
-              >
-                <path d="M31.2 13.4l-1.4-.7c-.1 0-.2-.1-.2-.2v-.2c-.3-1.1-.7-2.1-1.3-3.1v-.1l-.2-.1v-.3l.5-1.5c.2-.5 0-1.1-.4-1.5l-1.9-1.9c-.4-.4-1-.5-1.5-.4l-1.5.5H23l-.1-.1h-.1c-1-.5-2-1-3.1-1.3h-.2c-.1 0-.1-.1-.2-.2L18.6.9c-.2-.5-.7-.9-1.2-.9h-2.7c-.5 0-1 .3-1.3.8l-.7 1.4c0 .1-.1.2-.2.2h-.2c-1.1.3-2.1.7-3.1 1.3h-.1l-.1.2h-.3l-1.5-.5c-.5-.2-1.1 0-1.5.4L3.8 5.7c-.4.4-.5 1-.4 1.5l.5 1.5v.5c-.5 1-1 2-1.3 3.1v.2c0 .1-.1.1-.2.2l-1.4.7c-.6.2-1 .7-1 1.2v2.7c0 .5.3 1 .8 1.3l1.4.7c.1 0 .2.1.2.2v.2c.3 1.1.7 2.1 1.3 3.1v.1l.2.1v.3l-.5 1.5c-.2.5 0 1.1.4 1.5l1.9 1.9c.3.3.6.4 1 .4.2 0 .3 0 .5-.1l1.5-.5H9l.1.1h.1c1 .5 2 1 3.1 1.3h.2c.1 0 .1.1.2.2l.7 1.4c.2.5.7.8 1.3.8h2.7c.5 0 1-.3 1.3-.8l.7-1.4c0-.1.1-.2.2-.2h.2c1.1-.3 2.1-.7 3.1-1.3h.1l.1-.1h.3l1.5.5c.1 0 .3.1.5.1.4 0 .7-.1 1-.4l1.9-1.9c.4-.4.5-1 .4-1.5l-.5-1.5V23l.1-.1v-.1c.5-1 1-2 1.3-3.1v-.2c0-.1.1-.1.2-.2l1.4-.7c.5-.2.8-.7.8-1.3v-2.7c0-.5-.4-1-.8-1.2zM16 27.1c-6.1 0-11.1-5-11.1-11.1S9.9 4.9 16 4.9s11.1 5 11.1 11.1-5 11.1-11.1 11.1z"></path>
-              </svg>
-            </div>
-            <div>Settings</div>
-          </div>
+
           <div
             className="flex cursor-pointer hover:bg-gray-300 h-full justify-start items-center"
             onClick={async () => {
@@ -89,7 +81,7 @@ export const ProfilePop: React.FC = () => {
         </div>
         <div
           onClick={() => dispatch(signOutRequest())}
-          className="h-[35px] hover:bg-gray-300 w-full border-t-[1px] border-ins-border  flex justify-center items-center cursor-pointer"
+          className="h-[45px] hover:bg-gray-300 w-full border-t-[1px] border-ins-border  flex justify-center items-center cursor-pointer"
         >
           Log Out
         </div>

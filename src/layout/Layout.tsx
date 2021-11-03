@@ -6,18 +6,23 @@ import { SearchPopUp } from '@/components/SearchPopUp/SearchPopUp';
 import { useAppSelector, useAppDispatch } from '@/store';
 import Post from '@/layout/Post/Post';
 import { ProfilePop } from '@/components/ProfilePop/ProfilePop';
-import { AppSelected, toogleProfileShow } from '@/store/reducers/appSlice';
+import { AppSelected, toogleProfileShow, setEditProfileHidden } from '@/store/reducers/appSlice';
+import EditProfile from './EditProfile/EditProfile';
 
 export const Layout: React.FC = ({ children }) => {
   const isSearchPopUpShow = useAppSelector((state) => state.app.isShowSearchPopUp);
   const isProfilePopUpShow = useAppSelector((state) => state.app.isProfilePopUp);
+  const isEditProfilePopUpShow = useAppSelector((state) => state.app.isEditProfilePopUp);
   const selected = useAppSelector((state) => state.app.selected);
   const dispatch = useAppDispatch();
+  console.log(isEditProfilePopUpShow);
 
   return (
     <div
       className={`${
-        selected === AppSelected.NEW_POST ? 'max-h-screen overflow-hidden' : ''
+        selected === AppSelected.NEW_POST || isEditProfilePopUpShow === true
+          ? 'max-h-screen overflow-hidden'
+          : ''
       } text-xs w-full relative`}
     >
       <HeadMeta />
@@ -40,6 +45,17 @@ export const Layout: React.FC = ({ children }) => {
           <div
             className="absolute inset-0  z-20"
             onClick={() => dispatch(toogleProfileShow())}
+          ></div>
+        </>
+      )}
+      {isEditProfilePopUpShow && (
+        <>
+          <div className="" onClick={() => {}}>
+            <EditProfile />
+          </div>
+          <div
+            className="absolute inset-0 z-20 bg-black/20"
+            onClick={() => dispatch(setEditProfileHidden())}
           ></div>
         </>
       )}

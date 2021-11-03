@@ -12,12 +12,16 @@ interface AppState {
   selected: AppSelected;
   isShowSearchPopUp: boolean;
   isProfilePopUp: boolean;
+  selectedOnProfilePage: 'POSTS' | 'SAVED';
+  isEditProfilePopUp: boolean;
 }
 
 const initialState: AppState = {
   selected: AppSelected.HOME,
   isShowSearchPopUp: false,
   isProfilePopUp: false,
+  selectedOnProfilePage: 'POSTS',
+  isEditProfilePopUp: false,
 };
 
 export const appSlice = createSlice({
@@ -38,10 +42,31 @@ export const appSlice = createSlice({
     toogleProfileShow: (state) => {
       state.isProfilePopUp = !state.isProfilePopUp;
     },
+    setSelectedOnProfilePageIsSaved: (state) => {
+      state.selectedOnProfilePage = 'SAVED';
+    },
+    setSelectedOnProfilePageIsPosts: (state) => {
+      state.selectedOnProfilePage = 'POSTS';
+    },
+    setEditProfilePopUp: (state) => {
+      state.isEditProfilePopUp = true;
+    },
+    setEditProfileHidden: (state) => {
+      state.isEditProfilePopUp = false;
+    },
   },
   initialState,
 });
 
-export const { selectedField, toogleSearch, hiddenSearch, showSearch, toogleProfileShow } =
-  appSlice.actions;
+export const {
+  selectedField,
+  toogleSearch,
+  hiddenSearch,
+  showSearch,
+  toogleProfileShow,
+  setSelectedOnProfilePageIsSaved,
+  setSelectedOnProfilePageIsPosts,
+  setEditProfileHidden,
+  setEditProfilePopUp,
+} = appSlice.actions;
 export default appSlice.reducer;

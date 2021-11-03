@@ -1,5 +1,5 @@
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
-import { ISignUpWithEmail } from '@/models/auth';
+import { ISignUpWithEmail } from '@/types/auth';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { createUserWithEmailRequest } from '@/store/reducers/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';

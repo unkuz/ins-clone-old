@@ -1,4 +1,4 @@
-import { ISignInWithEmail } from '@/models/auth';
+import { ISignInWithEmail } from '@/types/auth';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
   signInWithEmailRequest,
