@@ -34,8 +34,8 @@ const Post: NextPage = () => {
               <div></div>
               <div>Drag photos and videos here</div>
               <div className="border-ins-border border-[1px] rounded-md px-10 py-1 bg-blue-500 text-white mt-5 cursor-pointer">
-                <input type="file" id="input" className="hidden" />
-                <label htmlFor="input" id="label">
+                <input type="file" id="input" className="z-50" />
+                <label htmlFor="input" id="label" className="w-full">
                   Choose File
                 </label>
               </div>

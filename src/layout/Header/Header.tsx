@@ -42,11 +42,14 @@ export const Header: React.FC = () => {
           </Icon>
         </div>
         {/* Middle Header */}
-        <div className="flex-1 justify-center hidden md:flex">
-          <div onClick={() => dispatch(showSearch())}>
-            <Search />
+        {isAuth === 'authenticated' && (
+          <div className="flex-1 justify-center hidden md:flex">
+            <div onClick={() => dispatch(showSearch())}>
+              <Search />
+            </div>
           </div>
-        </div>
+        )}
+
         {/* Right header as TaskBar */}
         <div className="flex-1 mx-auto">
           <nav className="flex w-full h-full justify-evenly md:space-x-2 lg:space-x-3 md:justify-end  items-center ">

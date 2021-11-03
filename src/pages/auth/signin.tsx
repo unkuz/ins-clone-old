@@ -6,11 +6,14 @@ import {
   signInWithGoogleRequest,
 } from '@/store/reducers/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Instagram from '@/assets/svg/instagram.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import { Icon } from '@/components/Icon';
+import { AppRoutes } from '@/routes';
 
 const schema = yup
   .object({
@@ -43,12 +46,10 @@ const SignIn: React.FC = () => {
       <div className="w-[320px] h-[550px]">
         <div className="h-[30px]"></div>
         <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start">
-          <div className="w-[170px] mt-16">
-            <Image
-              src={require('@/assets/images/instagram_logo.png')}
-              alt=""
-              className="object-cover"
-            />
+          <div className="w-[170px] mt-16 flex justify-center items-center">
+            <Icon size={50} href={AppRoutes.HOME_PAGE}>
+              <Instagram />
+            </Icon>
           </div>
           <div className="h-[90px] flex justify-center items-center text-red-500">
             <p>{errMsg && errMsg}</p>
