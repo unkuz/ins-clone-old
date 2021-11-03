@@ -39,6 +39,7 @@ const SignUpPage: NextPage = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: ISignUpWithEmail) => dispatch(createUserWithEmailRequest(data));
+  const errMsg = useAppSelector((state) => state.auth.errMsg);
   return (
     <div className="w-screen sm:w-full min-h-screen flex justify-center items-center">
       <div className="w-[320px] h-[550px]">
@@ -49,7 +50,9 @@ const SignUpPage: NextPage = () => {
               <Instagram />
             </Icon>
           </div>
-          <div className="h-[90px]"></div>
+          <div className="h-[90px] flex justify-center items-center text-red-500">
+            <p>{errMsg && errMsg}</p>
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
