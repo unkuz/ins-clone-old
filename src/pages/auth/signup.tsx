@@ -1,5 +1,5 @@
 import BackIcon from '@/assets/svg/back_arrow_icon.svg';
-import { ISignUpWithEmail } from '@/types/auth';
+import { ISignUpWithEmail } from '@/utils/types/auth';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { createUserWithEmailRequest } from '@/store/reducers/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,7 +21,7 @@ const schema = yup
   })
   .required();
 
-const SignUp: NextPage = () => {
+const SignUpPage: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.status);
@@ -103,4 +103,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-export default SignUp;
+export default React.memo(SignUpPage);

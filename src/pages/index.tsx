@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Home from '@/layout/Home/Home';
 import { withHeader } from '@/hoc/layout/withHeader';
+import React from 'react';
 
 const HomePage: NextPage = () => {
   return (
@@ -14,4 +15,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default React.memo(HomePage);

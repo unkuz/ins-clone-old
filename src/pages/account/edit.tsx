@@ -10,4 +10,4 @@ const EditPage: NextPage = () => {
   );
 };
 
-export default EditPage;
+export default React.memo(EditPage);

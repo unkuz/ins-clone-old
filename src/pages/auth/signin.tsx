@@ -1,4 +1,4 @@
-import { ISignInWithEmail } from '@/types/auth';
+import { ISignInWithEmail } from '@/utils/types/auth';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
   signInWithEmailRequest,
@@ -14,6 +14,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { Icon } from '@/components/Icon';
 import { AppRoutes } from '@/routes';
+import { NextPage } from 'next';
 
 const schema = yup
   .object({
@@ -22,7 +23,7 @@ const schema = yup
   })
   .required();
 
-const SignIn: React.FC = () => {
+const SignInPage: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.status);
@@ -117,4 +118,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default React.memo(SignInPage);

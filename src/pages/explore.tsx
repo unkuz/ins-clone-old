@@ -15,4 +15,4 @@ const ExplorePage: NextPage = () => {
   );
 };
 
-export default ExplorePage;
+export default React.memo(ExplorePage);

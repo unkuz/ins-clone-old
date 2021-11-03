@@ -10,4 +10,4 @@ const ProfilePage: NextPage = () => {
   );
 };
 
-export default ProfilePage;
+export default React.memo(ProfilePage);
