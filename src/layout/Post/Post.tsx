@@ -63,7 +63,7 @@ const Post: NextPage = () => {
                   <img
                     // src={selectedFile}
                     alt=""
-                    className={`object-cover w-[300px] h-[300px]`}
+                    className={`object-cover w-[300px] h-[250px] md:h-[300px]`}
                     onClick={() => setSelectedFile((prev) => null)}
                   />
                 )}

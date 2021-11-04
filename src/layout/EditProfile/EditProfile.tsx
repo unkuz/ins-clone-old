@@ -114,7 +114,7 @@ const EditProfile = () => {
               <input
                 type="submit"
                 value="Save"
-                className="w-full h-[50px] border-[1px] border-ins-border cursor-pointer bg-white hover:bg-blue-300 flex justify-center items-center rounded-lg active:bg-blue-300"
+                className="w-full h-[40px] border-[1px] border-ins-border cursor-pointer bg-white hover:bg-blue-300 flex justify-center items-center rounded-lg active:bg-blue-300"
               />
               <div className="h-[10px]"></div>
             </form>
