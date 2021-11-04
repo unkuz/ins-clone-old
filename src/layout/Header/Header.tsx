@@ -77,7 +77,9 @@ export const Header: React.FC = () => {
               <div
                 onClick={() => {
                   dispatch(selectedField(AppSelected.MESSENGER));
-                  router.push(AppRoutes.CHAT_PAGE);
+                  // unavailable
+                  dispatch(setActivityFeedPopUp());
+                  // router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
                 <div className="w-[22px] h-[22px] cursor-pointer">
