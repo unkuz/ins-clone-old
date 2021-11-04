@@ -23,10 +23,11 @@ import {
 } from '@/store/reducers/appSlice';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RandomImage } from '../Profile/RandomImage';
 
 export const Header: React.FC = () => {
+  const [widthDevice, setWidthDevice] = useState<number>(window.innerWidth);
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
   const isAuth = useAppSelector((state) => state.auth.status);
@@ -147,11 +148,18 @@ export const Header: React.FC = () => {
                       ? 'border-[1px] rounded-full border-black '
                       : ''
                   }`}
-                  onClick={() => dispatch(toogleProfileShow())}
+                  onClick={() => {
+                    if (widthDevice > 768) {
+                      return dispatch(toogleProfileShow());
+                    }
+                    router.push(AppRoutes.PROFILE);
+                  }}
                 >
                   <div onClick={() => {}}>
                     {user && user.photoURL ? (
-                      <ImageNextJS width={25} height={25} circle src={user?.photoURL} pointer />
+                      <div className="md:cursor-pointer">
+                        <ImageNextJS width={25} height={25} circle src={user?.photoURL} />
+                      </div>
                     ) : (
                       <div className="w-[22px] h-[22px] md:cursor-pointer">
                         <RandomImage />
