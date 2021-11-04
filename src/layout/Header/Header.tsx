@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
   const isProfilePopUpShow = useAppSelector((state) => state.app.profile.isProfilePopUp);
   const router = useRouter();
   return (
-    <header className="fixed bottom-0 md:top-0 w-full h-[60px] md:h-[50px] border-b-[1px] border-ins-border bg-white z-20  md:block">
+    <header className="fixed bottom-0 md:top-0 w-full h-[65px] md:h-[50px] border-t-[1px] md:border-t-0 md:border-b-[1px] border-ins-border bg-white z-20  md:block">
       <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center  ">
         {/* LEft Part Header */}
         <div className="flex-1 hidden md:flex">
@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.HOME_PAGE);
               }}
             >
-              <div className="w-[22px] h-[22px] md:cursor-pointer">
+              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                 {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
               </div>
             </div>
@@ -83,7 +83,7 @@ export const Header: React.FC = () => {
                   // router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
-                <div className="w-[22px] h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                   {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
                 </div>
               </div>
@@ -98,7 +98,7 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.NEW_POST_PAGE);
                 }}
               >
-                <div className="w-[22px] h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                   {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
                 </div>
               </div>
@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.EXPLORE_PAGE);
               }}
             >
-              <div className="w-[22px] h-[22px] md:cursor-pointer">
+              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                 {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
               </div>
             </div>
@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
                   dispatch(setActivityFeedPopUp());
                 }}
               >
-                <div className="w-[22px] h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                   {selected === AppSelected.ACTIVITY_FEED ? (
                     <ActivityFeedSelected />
                   ) : (
@@ -157,11 +157,11 @@ export const Header: React.FC = () => {
                 >
                   <div onClick={() => {}}>
                     {user && user.photoURL ? (
-                      <div className="md:cursor-pointer">
+                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                         <ImageNextJS width={25} height={25} circle src={user?.photoURL} />
                       </div>
                     ) : (
-                      <div className="w-[22px] h-[22px] md:cursor-pointer">
+                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
                         <RandomImage />
                       </div>
                     )}
