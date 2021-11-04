@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.HOME_PAGE);
               }}
             >
-              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                 {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
               </div>
             </div>
@@ -83,7 +83,7 @@ export const Header: React.FC = () => {
                   // router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
-                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                   {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
                 </div>
               </div>
@@ -98,7 +98,7 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.NEW_POST_PAGE);
                 }}
               >
-                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                   {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
                 </div>
               </div>
@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.EXPLORE_PAGE);
               }}
             >
-              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+              <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                 {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
               </div>
             </div>
@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
                   dispatch(setActivityFeedPopUp());
                 }}
               >
-                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+                <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                   {selected === AppSelected.ACTIVITY_FEED ? (
                     <ActivityFeedSelected />
                   ) : (
@@ -157,11 +157,11 @@ export const Header: React.FC = () => {
                 >
                   <div onClick={() => {}}>
                     {user && user.photoURL ? (
-                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                         <ImageNextJS width={25} height={25} circle src={user?.photoURL} />
                       </div>
                     ) : (
-                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer">
+                      <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
                         <RandomImage />
                       </div>
                     )}
