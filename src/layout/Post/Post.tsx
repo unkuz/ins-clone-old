@@ -7,13 +7,15 @@ import { selectedField, AppSelected } from '@/store/reducers/appSlice';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { withLayout } from '@/hoc/layout/withLayout';
+import { userPostRequest } from '@/store/reducers/postsSlice';
 
 const Post: NextPage = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
+  const userUid = useAppSelector((state) => state.auth.user?.userUid);
   const router = useRouter();
   const inputUpload = useRef<HTMLInputElement>(null);
-  const [selectedFile, setSelectedFile] = useState<string | ArrayBuffer | null>();
+  const [selectedFile, setSelectedFile] = useState<string | null>();
   const [caption, setCaption] = useState('');
   const handleUpload = () => {
     if (inputUpload.current) {
@@ -27,14 +29,19 @@ const Post: NextPage = () => {
       reader.readAsDataURL(fileList[0]);
     }
     reader.onload = (readerEvent) => {
-      const dataUri = readerEvent.target?.result;
+      const dataUri = readerEvent.target?.result as string;
       if (dataUri) {
         setSelectedFile(dataUri);
       }
     };
   };
   const handlePostToFireBase = () => {
-    console.log(caption);
+    const data = {
+      caption,
+      selectedFile,
+      userUid,
+    };
+    dispatch(userPostRequest(data));
   };
   return (
     <>
@@ -61,7 +68,7 @@ const Post: NextPage = () => {
               <div>
                 {selectedFile && (
                   <img
-                    // src={selectedFile}
+                    src={selectedFile}
                     alt=""
                     className={`object-cover w-[300px] h-[250px] md:h-[300px]`}
                     onClick={() => setSelectedFile((prev) => null)}
@@ -103,7 +110,7 @@ const Post: NextPage = () => {
                 {selectedFile && (
                   <div
                     onClick={handlePostToFireBase}
-                    className="border-ins-border mb-5 border-[1px] rounded-md px-32 md:px-10 py-2 md:py-1 bg-blue-500 text-white mt-5 cursor-pointer"
+                    className="border-ins-border active:bg-blue-400 mb-5 border-[1px] rounded-md px-32 md:px-10 py-2 md:py-1 bg-blue-500 text-white mt-5 cursor-pointer"
                   >
                     Post
                   </div>

@@ -28,7 +28,7 @@ const Profile = () => {
                 src={`${
                   user && user.photoURL
                     ? user.photoURL
-                    : 'https://avatars.dicebear.com/api/human/' + Math.random() + '.svg'
+                    : 'https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/userDefault%2F44884218_345707102882519_2446069589734326272_n.jpg?alt=media&token=51394aa8-7c3c-4496-8f70-8a9c922f62bb'
                 }`}
                 alt=""
                 layout="fill"
@@ -43,20 +43,20 @@ const Profile = () => {
             </div>
             <div className="w-full h-[50px] flex justify-between items-center ">
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="">{user?.posts.length}</p>
+                <p className="">{user?.posts?.length}</p>
                 <p>Posts</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className=" cursor-pointer">{user?.followers.length}</p>
+                <p className=" cursor-pointer">{user?.followers?.length}</p>
                 <p>Followers</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="cursor-pointer">{user?.following.length}</p>
+                <p className="cursor-pointer">{user?.following?.length}</p>
                 <p>Following</p>
               </div>
             </div>
-            <div className="relative">
-              <div className="h-[30px]  items-center hidden md:flex">{user?.name}</div>
+            <div className="">
+              <div className="h-[30px] items-center hidden md:flex">{user?.name}</div>
               <div className="items-center hidden  md:flex">{user?.bio}</div>
             </div>
             <div className="h-[30px] hidden md:block"></div>
@@ -76,7 +76,7 @@ const Profile = () => {
           <div className="w-[10px] h-full"></div>
           <div>
             <div className="h-[30px] flex items-center md:hidden text-sm">{user?.name}</div>
-            <p style={{ whiteSpace: 'pre' }}>{user?.bio.toString()}</p>
+            <p style={{ whiteSpace: 'pre' }}>{user?.bio}</p>
           </div>
         </div>
         <div className="w-full md:w-10/12 mx-auto flex md:hidden justify-center">

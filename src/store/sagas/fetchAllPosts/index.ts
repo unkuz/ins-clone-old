@@ -24,11 +24,6 @@ import {
 import { auth, db, storage } from '@/helpers/firebase';
 import { ref, getDownloadURL, uploadString } from '@firebase/storage';
 import { editProfileSuccess } from '@/store/reducers/authSlice';
-import {
-  fetchAllUsersFailure,
-  fetchAllUsersRequest,
-  fetchAllUsersSuccess,
-} from '@/store/reducers/usersSlice';
 
 interface UserPost {
   caption: string;
@@ -38,21 +33,21 @@ interface UserPost {
 
 function* onUserPost(): any {
   try {
-    const querySnapshotAllPosts = yield getDocs(collection(db, 'users'));
+    const querySnapshotAllPosts = yield getDocs(collection(db, 'posts'));
 
-    let allUsers: any[] = [];
+    let allPosts: any[] = [];
 
     querySnapshotAllPosts.forEach((doc: any) => {
-      allUsers.push(doc.data());
+      allPosts.push(doc.data());
     });
 
     // console.log(allPost);
-    yield put(fetchAllUsersSuccess(allUsers));
+    yield put(fetchAllPostsSuccess(allPosts));
   } catch (err) {
-    yield put(fetchAllUsersFailure(err));
+    yield put(fetchAllPostsFailure(err));
   }
 }
 
-export function* fetchAllUsersSaga() {
-  yield takeLatest(fetchAllUsersRequest.toString(), onUserPost);
+export function* fetchAllPostsSaga() {
+  yield takeLatest(fetchAllPostsRequest.toString(), onUserPost);
 }

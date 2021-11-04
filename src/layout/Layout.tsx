@@ -8,7 +8,9 @@ import {
   setEditProfileHidden,
   toogleProfileShow,
 } from '@/store/reducers/appSlice';
-import React from 'react';
+import { fetchAllPostsRequest } from '@/store/reducers/postsSlice';
+import { fetchAllUsersRequest } from '@/store/reducers/usersSlice';
+import React, { useEffect } from 'react';
 import { ActivityFeed } from './ActivityFeed/ActivityFeed';
 import EditProfile from './EditProfile/EditProfile';
 
@@ -19,6 +21,10 @@ export const Layout: React.FC = ({ children }) => {
   const isActivityFeedPopUpShow = useAppSelector((state) => state.app.activity.isActivityFeedPopUp);
   const selected = useAppSelector((state) => state.app.selected);
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchAllPostsRequest());
+    dispatch(fetchAllUsersRequest());
+  });
 
   return (
     <div

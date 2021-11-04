@@ -1,6 +1,6 @@
 import { authSaga } from '@/store/sagas/auth';
-import { fetchAllPostSaga } from '@/store/sagas/fetchAllPost';
-import { fetchAllUserSaga } from '@/store/sagas/fetchAllUser';
+import { fetchAllPostsSaga } from '@/store/sagas/fetchAllPosts';
+import { fetchAllUsersSaga } from '@/store/sagas/fetchAllUser';
 import { userPostSaga } from '@/store/sagas/userPost';
 import { all } from 'redux-saga/effects';
 import { userEditProfileSaga } from '@/store/sagas/userEditProfile';
@@ -11,8 +11,8 @@ export function* rootSaga() {
     authSaga(),
     userPostSaga(),
     userEditProfileSaga(),
-    fetchAllPostSaga(),
-    fetchAllUserSaga(),
+    fetchAllPostsSaga(),
+    fetchAllUsersSaga(),
     fetchAllSavedSaga(),
   ]);
 }

@@ -20,6 +20,8 @@ module.exports = withPWA({
       'unsplash.com',
       'lh3.googleusercontent.com',
       'avatars.dicebear.com',
+      'firebasestorage.googleapis.com',
+      'https://firebasestorage.googleapis.com',
     ],
   },
   webpack: (config, options) => {

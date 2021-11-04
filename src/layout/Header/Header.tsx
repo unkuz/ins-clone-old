@@ -162,7 +162,12 @@ export const Header: React.FC = () => {
                       </div>
                     ) : (
                       <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
-                        <RandomImage />
+                        <Image
+                          src="https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/userDefault%2F44884218_345707102882519_2446069589734326272_n.jpg?alt=media&token=51394aa8-7c3c-4496-8f70-8a9c922f62bb"
+                          alt=""
+                          layout="fill"
+                          className="object-cover"
+                        />
                       </div>
                     )}
                   </div>
