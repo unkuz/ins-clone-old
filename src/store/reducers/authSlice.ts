@@ -89,10 +89,10 @@ const authSlice = createSlice({
     },
     editProfileRequest: (state, action) => {},
     editProfileSuccess: (state, action) => {
-      state.user = action.payload.user;
+      state.user = action.payload;
     },
     editProfileFailure: (state, action) => {
-      state.errMsg = action.payload.err;
+      state.errMsg = action.payload;
     },
   },
 });

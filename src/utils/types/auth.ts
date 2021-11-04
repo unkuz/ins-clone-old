@@ -3,13 +3,10 @@ export interface EmailPassword {
   password: string;
 }
 export interface EditProfile {
-  data: {
-    name: string;
-    username: string;
-    email: string;
-    bio: string;
-    uid?: string;
-  };
+  name: string;
+  username: string;
+  email: string;
+  bio: string;
   userUid: string;
 }
 export interface ISignUpWithEmail {
@@ -36,5 +33,5 @@ export interface User {
   saved: string[];
   emailVerified: boolean;
   timeStamp: any;
-  uid: string;
+  userUid: string;
 }

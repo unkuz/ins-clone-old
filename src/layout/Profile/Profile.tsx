@@ -1,6 +1,7 @@
 import { withLayout } from '@/hoc/layout/withLayout';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
+  PostsOrSaved,
   setEditProfilePopUp,
   setSelectedOnProfilePageIsPosts,
   setSelectedOnProfilePageIsSaved,
@@ -8,24 +9,21 @@ import {
 import Image from 'next/image';
 import React from 'react';
 import { MiniPost } from './MiniPost';
-enum SelectedField {
-  POSTS = 'POSTS',
-  SAVED = 'SAVED',
-}
 
 const Profile = () => {
   const user = useAppSelector((state) => state.auth.user);
   const selectedField = useAppSelector((state) => state.app.profile.selectedOnProfilePage);
   const dispatch = useAppDispatch();
+  console.log(selectedField);
 
   return (
     <div className="min-h-screen">
       <div className="w-full md:w-10/12 mx-auto">
         {/* top */}
-        <div className="h-[150px] flex justify-between ">
+        <div className="flex w-full h-full justify-between  items-center">
           {/* left profile picture */}
-          <div className="w-[120px] md:w-[150px] h-full  flex justify-center items-center">
-            <div className="relative w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-full overflow-hidden cursor-pointer">
+          <div className="w-[100px] md:w-[150px] h-full flex flex-col justify-center items-center ">
+            <div className="relative w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-full overflow-hidden cursor-pointer ">
               <Image
                 src={`${
                   user && user.photoURL
@@ -39,53 +37,78 @@ const Profile = () => {
             </div>
           </div>
           {/* right info */}
-          <div className="w-[100px] md:w-[400px] h-full flex flex-col">
-            <div className="w-full h-[70px] flex justify-center items-center text-xl">
-              {user?.email}
+          <div className="md:w-[400px] flex flex-col  w-[450px]">
+            <div className="w-full h-[50px] flex justify-center items-center ">
+              {user?.username}
             </div>
-            <div className="w-full h-full flex justify-between items-center ">
+            <div className="w-full h-[50px] flex justify-between items-center ">
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base">{user?.posts.length}</p>
+                <p className="">{user?.posts.length}</p>
                 <p>Posts</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base cursor-pointer">{user?.followers.length}</p>
+                <p className=" cursor-pointer">{user?.followers.length}</p>
                 <p>Followers</p>
               </div>
               <div className="h-full flex-1 flex flex-col justify-center items-center">
-                <p className="md:text-base cursor-pointer">{user?.following.length}</p>
+                <p className="cursor-pointer">{user?.following.length}</p>
                 <p>Following</p>
               </div>
             </div>
+            <div className="relative">
+              <div className="h-[30px]  items-center hidden md:flex">{user?.name}</div>
+              <div className="items-center hidden  md:flex">{user?.bio}</div>
+            </div>
+            <div className="h-[30px] hidden md:block"></div>
           </div>
           <div className="w-[100px] md:w-[150px] h-full flex justify-center items-center">
             <div
               onClick={() => {
                 dispatch(setEditProfilePopUp());
               }}
-              className="cursor-pointer border-[1px] border-ins-border py-2 md:px-5 px-2 rounded-lg hover:bg-blue-300 bg-white"
+              className="cursor-pointer hidden md:flex border-[1px] border-ins-border py-2 md:px-5 px-2 rounded-lg hover:bg-blue-300 bg-white"
             >
               Edit Profile
             </div>
           </div>
         </div>
+        <div className="w-full md:w-10/12 mx-auto flex md:hidden">
+          <div className="w-[10px] h-full"></div>
+          <div>
+            <div className="h-[30px] flex items-center md:hidden text-sm">{user?.name}</div>
+            <p style={{ whiteSpace: 'pre' }}>{user?.bio.toString()}</p>
+          </div>
+        </div>
+        <div className="w-full md:w-10/12 mx-auto flex md:hidden justify-center">
+          <div
+            onClick={() => {
+              dispatch(setEditProfilePopUp());
+            }}
+            className="cursor-pointer mt-[12px] md:hidden border-[1px] border-ins-border py-2  px-24 rounded-lg hover:bg-blue-300 bg-white"
+          >
+            Edit Profile
+          </div>
+        </div>
+        <div className="h-[12px] md:hidden"></div>
+
         {/* middle */}
-        <div className="sticky top-0">
+        <div className="sticky top-0 z-20 bg-white">
           <hr />
           <div>
             <div className="h-[50px] flex md:space-x-48 space-x-4 justify-center items-center">
               <div
                 onClick={() => dispatch(setSelectedOnProfilePageIsPosts())}
                 className={`${
-                  selectedField === 'POSTS' ? 'bg-blue-300' : ''
+                  selectedField === PostsOrSaved.POSTS ? 'bg-blue-300' : ''
                 } border-[1px] cursor-pointer border-ins-border py-2 md:px-16 px-10 rounded-lg hover:bg-blue-300`}
               >
                 Posts
               </div>
               <div
                 onClick={() => dispatch(setSelectedOnProfilePageIsSaved())}
-                className={`${selectedField === SelectedField.SAVED ? 'bg-blue-300' : ''}
-              border-[1px] cursor-pointer border-ins-border py-2 md:px-16 px-10 rounded-lg hover:bg-blue-300`}
+                className={`${
+                  selectedField === PostsOrSaved.SAVE ? 'bg-blue-300' : ''
+                } border-[1px] cursor-pointer border-ins-border py-2 md:px-16 px-10 rounded-lg hover:bg-blue-300`}
               >
                 Saved
               </div>
@@ -96,24 +119,24 @@ const Profile = () => {
         {/* post */}
         <div className="grid grid-cols-3 gap-1">
           {/* Only post show */}
-          {selectedField === 'POSTS' &&
+          {selectedField === PostsOrSaved.POSTS &&
             'fsdjafsdafsdfhasdfsfaf'
               .split('')
               .map((i) => (
                 <MiniPost
-                  key={i}
+                  key={Math.random()}
                   likes={50}
                   comments={56}
                   imageUrl="https://images.unsplash.com/photo-1633809787036-b06db15939c4?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8Qm4tRGpyY0Jyd298fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 />
               ))}
           {/* Only saved show */}
-          {selectedField === 'SAVED' &&
+          {selectedField === PostsOrSaved.SAVE &&
             'fsdjahasadgssdfsfaf'
               .split('')
               .map((i) => (
                 <MiniPost
-                  key={i}
+                  key={Math.random()}
                   likes={500989}
                   comments={56}
                   imageUrl="https://images.unsplash.com/photo-1635807013625-d4c06fad0a29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"

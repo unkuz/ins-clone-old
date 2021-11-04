@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { EditProfile } from '@/utils/types/auth';
 import { editProfileRequest } from '@/store/reducers/authSlice';
+import { useRouter } from 'next/router';
 
 const schema = yup
   .object({
@@ -12,24 +13,36 @@ const schema = yup
     username: yup.string().min(5).required(),
     email: yup.string().email().required(),
     bio: yup.string().required(),
-    // uid: yup.string().required(),
   })
   .required();
 
 const EditProfile = () => {
-  const userUid = useAppSelector((state) => state.auth.user?.uid);
-  const errMsg = useAppSelector((state) => state.auth.errMsg);
+  const userUid = useAppSelector((state) =>
+    state.auth.user?.userUid ? state.auth.user?.userUid : ''
+  );
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.auth.status);
+  const router = useRouter();
+  const errMsg = useAppSelector((state) => state.auth.errMsg);
+  const user = useAppSelector((state) => state.auth.user);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: user?.name,
+      username: user?.username,
+      email: user?.email,
+      bio: user?.bio,
+    },
   });
   const onSubmit = (data: EditProfile) => {
+    data.userUid = userUid;
     console.log(data);
-    dispatch(editProfileRequest({data,userUid}));
+    dispatch(editProfileRequest(data));
   };
 
   return (
@@ -44,11 +57,6 @@ const EditProfile = () => {
         <div className="">
           <div className="w-5/6 h-full mx-auto flex flex-col justify-between">
             <form onSubmit={handleSubmit(onSubmit)}>
-              {/* <input
-                {...register('uid')}
-                value={userUid}
-                className="py-2 hidden px-6 focus:outline-none border-[1px] focus:border-indigo-400 rounded-md shadow-sm"
-              /> */}
               {/* name */}
               <div className="h-[20px]"></div>
               <div className="w-full h-[50px] ">

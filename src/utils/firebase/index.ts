@@ -15,6 +15,6 @@ export const generateNewUser = (user: any): User => {
     saved: [],
     emailVerified: user?.emailVerified ? true : false,
     timeStamp: serverTimestamp(),
-    uid: user.uid,
+    userUid: user.uid,
   };
 };

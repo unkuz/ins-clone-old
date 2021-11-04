@@ -38,9 +38,14 @@ export const Header: React.FC = () => {
       <div className="md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between items-center  ">
         {/* LEft Part Header */}
         <div className="flex-1 hidden md:flex">
-          <Icon size={30} href={AppRoutes.HOME_PAGE}>
+          <div
+            onClick={() => {
+              router.push(AppRoutes.HOME_PAGE);
+            }}
+            className="w-[30px] h-[30px] cursor-pointer"
+          >
             <Instagram />
-          </Icon>
+          </div>
         </div>
         {/* Middle Header */}
         {isAuth === 'authenticated' && (
@@ -61,7 +66,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.HOME_PAGE);
               }}
             >
-              <div className="w-[22px] h-[22px]">
+              <div className="w-[22px] h-[22px] cursor-pointer">
                 {selected === AppSelected.HOME ? <HomeSelected /> : <Home />}
               </div>
             </div>
@@ -75,7 +80,7 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.CHAT_PAGE);
                 }}
               >
-                <div className="w-[22px] h-[22px]">
+                <div className="w-[22px] h-[22px] cursor-pointer">
                   {selected === AppSelected.MESSENGER ? <DirectSelected /> : <Direct />}
                 </div>
               </div>
@@ -90,7 +95,7 @@ export const Header: React.FC = () => {
                   router.push(AppRoutes.NEW_POST_PAGE);
                 }}
               >
-                <div className="w-[22px] h-[22px]">
+                <div className="w-[22px] h-[22px] cursor-pointer">
                   {selected === AppSelected.NEW_POST ? <NewPostSelected /> : <NewPost />}
                 </div>
               </div>
@@ -104,7 +109,7 @@ export const Header: React.FC = () => {
                 router.push(AppRoutes.EXPLORE_PAGE);
               }}
             >
-              <div className="w-[22px] h-[22px]">
+              <div className="w-[22px] h-[22px] cursor-pointer">
                 {selected === AppSelected.FIND_PEOPLE ? <FindPeopleSelected /> : <FindPeople />}
               </div>
             </div>
@@ -117,7 +122,7 @@ export const Header: React.FC = () => {
                   dispatch(setActivityFeedPopUp());
                 }}
               >
-                <div className="w-[22px] h-[22px]">
+                <div className="w-[22px] h-[22px] cursor-pointer">
                   {selected === AppSelected.ACTIVITY_FEED ? (
                     <ActivityFeedSelected />
                   ) : (
@@ -146,7 +151,7 @@ export const Header: React.FC = () => {
                     {user && user.photoURL ? (
                       <ImageNextJS width={25} height={25} circle src={user?.photoURL} pointer />
                     ) : (
-                      <div className="w-[22px] h-[22px]">
+                      <div className="w-[22px] h-[22px] cursor-pointer">
                         <RandomImage />
                       </div>
                     )}
@@ -160,7 +165,7 @@ export const Header: React.FC = () => {
                       router.push(AppRoutes.SIGN_IN);
                     }}
                   >
-                    <div className="w-[22px] h-[22px]">
+                    <div className="w-[22px] h-[22px] cursor-pointer">
                       <Image
                         src={require('@/assets/images/login.png')}
                         alt=""

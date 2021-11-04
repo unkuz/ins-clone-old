@@ -8,13 +8,17 @@ export enum AppSelected {
   ACTIVITY_FEED = 'ACTIVITY_FEED',
   PROFILE = 'PROFILE',
 }
+export enum PostsOrSaved {
+  POSTS = 'POSTS',
+  SAVE = 'SAVE',
+}
 
 interface AppState {
   selected: AppSelected;
   isShowSearchPopUp: boolean;
   profile: {
     isProfilePopUp: boolean;
-    selectedOnProfilePage: 'POSTS' | 'SAVED';
+    selectedOnProfilePage: PostsOrSaved;
     isEditProfilePopUp: boolean;
   };
   activity: {
@@ -25,7 +29,11 @@ interface AppState {
 const initialState: AppState = {
   selected: AppSelected.HOME,
   isShowSearchPopUp: false,
-  profile: { isProfilePopUp: false, selectedOnProfilePage: 'POSTS', isEditProfilePopUp: false },
+  profile: {
+    isProfilePopUp: false,
+    selectedOnProfilePage: PostsOrSaved.POSTS,
+    isEditProfilePopUp: false,
+  },
   activity: { isActivityFeedPopUp: false },
 };
 
@@ -48,10 +56,10 @@ export const appSlice = createSlice({
       state.profile.isProfilePopUp = !state.profile.isProfilePopUp;
     },
     setSelectedOnProfilePageIsSaved: (state) => {
-      state.profile.selectedOnProfilePage = 'SAVED';
+      state.profile.selectedOnProfilePage = PostsOrSaved.SAVE;
     },
     setSelectedOnProfilePageIsPosts: (state) => {
-      state.profile.selectedOnProfilePage = 'POSTS';
+      state.profile.selectedOnProfilePage = PostsOrSaved.POSTS;
     },
     setEditProfilePopUp: (state) => {
       state.profile.isEditProfilePopUp = true;

@@ -10,18 +10,18 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { EditProfile } from '@/utils/types/auth';
 import { db } from '@/helpers/firebase';
 import { store } from '@/store';
+import { setEditProfileHidden } from '@/store/reducers/appSlice';
 
 function* onEditProfile(action: PayloadAction<EditProfile>): any {
   try {
     const userRef = yield doc(db, 'users', action.payload.userUid);
     yield updateDoc(userRef, {
-      name: action.payload.data.name,
-      username: action.payload.data.username,
-      email: action.payload.data.email,
-      bio: action.payload.data.bio,
+      name: action.payload.name,
+      username: action.payload.username,
+      email: action.payload.email,
+      bio: action.payload.bio,
     });
-    const state = store.getState();
-    console.log(state);
+    console.log('eit done');
 
     const querySnapshotAllUser = yield getDocs(collection(db, 'users'));
 
@@ -32,8 +32,9 @@ function* onEditProfile(action: PayloadAction<EditProfile>): any {
         userExist = doc.data();
       }
     });
-
+    console.log('userexist', userExist);
     yield put(editProfileSuccess(userExist));
+    yield put(setEditProfileHidden());
   } catch (err) {
     yield put(editProfileFailure(err));
   }
