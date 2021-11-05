@@ -15,6 +15,8 @@ import * as yup from 'yup';
 import { Icon } from '@/components/Icon';
 import { AppRoutes } from '@/routes';
 import { NextPage } from 'next';
+import Google from '@/assets/svg/google.svg';
+import Facebook from '@/assets/svg/facebook.svg';
 
 const schema = yup
   .object({
@@ -27,7 +29,6 @@ const SignInPage: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.status);
-  const errMsg = useAppSelector((state) => state.auth.errMsg);
   useEffect(() => {
     if (isAuth === 'authenticated') {
       router.push('/');
@@ -43,76 +44,79 @@ const SignInPage: NextPage = () => {
   });
   const onSubmit = (data: ISignInWithEmail) => dispatch(signInWithEmailRequest(data));
   return (
-    <div className="w-screen sm:w-full h-screen flex justify-center items-center ">
-      <div className="w-[320px] h-[550px]">
-        <div className="h-[30px]"></div>
-        <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start">
-          <div className="w-[170px] mt-16 flex justify-center items-center">
-            <Icon size={50} href={AppRoutes.HOME_PAGE}>
-              <Instagram />
-            </Icon>
+    <div className="w-full bg-[#fafafa]">
+      {/* space between header */}
+      <div className="md:h-[90px] h-[50px]"></div>
+      <div className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md">
+        <div className="h-[70px]"></div>
+        {/* logo section */}
+        <div className="flex justify-center items-center ">
+          <div className="relative w-[120px] h-[120px]">
+            <Image src={require('@/assets/png/icon.png')} alt="" className="object-fill" />
           </div>
-          <div className="h-[90px] flex justify-center items-center text-red-500">
-            <p>{errMsg && errMsg}</p>
-          </div>
-
-          <form onSubmit={handleSubmit(onSubmit)}>
+        </div>
+        {/* space */}
+        <div className="h-[40px]"></div>
+        {/* form section */}
+        <div className="flex justify-center items-center">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-4/5 md:w-4/6">
             <input
+              type="text"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
               {...register('email')}
               placeholder="Email"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
             />
-
-            <div className="h-[20px] text-red-500">
-              <p>{errors.email?.message}</p>
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.email?.message}
             </div>
             <input
-              {...register('password')}
-              placeholder="Password"
               type="password"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
+              placeholder="Password"
+              {...register('password')}
             />
-
-            <div className="h-[30px] text-red-500">
-              <p>{errors.password?.message}</p>
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.password?.message}
             </div>
-            <input
+            <button
+              className="px-10 py-3 border rounded-xl w-full bg-gradient-to-r border-ins-border shadow-lg from-[#FBDA61] to-[#FC00FF] hover:bg-blue-300 active:bg-blue-300"
               type="submit"
-              value="Log In"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 cursor-pointer text-blue-500"
-            />
+            >
+              Login
+            </button>
           </form>
-          <div className="h-[10px]"></div>
-          <div className="cursor-pointer text-blue-500">Or</div>
-          <div className="h-[30px] w-[230px]  flex justify-between items-center">
-            <div
-              onClick={() => dispatch(signInWithGoogleRequest())}
-              className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
-            >
-              SignIn w Google
-            </div>
-            <div
-              onClick={() => dispatch(signInWithFacebookRequest())}
-              className="h-full cursor-pointer w-[110px] flex justify-center items-center bg-blue-300 border-[1px] border-indigo-400"
-            >
-              SignIn w Facebook
-            </div>
-          </div>
         </div>
-        <div className="h-[30px]"></div>
-        <div className="h-[60px] border-[1px] border-ins-border flex justify-center items-center">
-          <div>
-            <span>{"Don't have an account ? "}</span>
-            <span
-              className="text-blue-500 cursor-pointer"
-              onClick={() => {
-                router.push('/auth/signup');
-              }}
-            >
-              Sign up
-            </span>
-          </div>
+        {/* space */}
+        <div className="h-[30px] flex justify-center items-center ">OR</div>
+        <div
+          onClick={() => router.push('/auth/signup')}
+          className="shadow-lg sm:cursor-pointer bg-gradient-to-br from-[#FAD961] to-[#F76B1C] w-4/5 h-[42px] md:w-4/6 mx-auto flex justify-center items-center border-ins-border border-[1px] rounded-lg"
+        >
+          <p>Create Account with Email</p>
         </div>
+        {/* space */}
+        <div className="h-[15px]"></div>
+        <div
+          onClick={() => dispatch(signInWithGoogleRequest())}
+          className="shadow-lg sm:cursor-pointer w-4/5 bg-gradient-to-l from-[#FFE53B] to-[#FF2525] h-[42px] md:w-4/6 mx-auto flex justify-center items-center border-ins-border border-[1px] rounded-lg"
+        >
+          <div className="w-[27px] h-[27px]">
+            <Google />
+          </div>
+          <p className="ml-3">SignIn with Google</p>
+        </div>
+        <div className="h-[15px]"></div>
+        <div
+          onClick={() => dispatch(signInWithFacebookRequest())}
+          className="shadow-lg sm:cursor-pointer w-4/5 bg-gradient-to-r from-[#21D4FD] to-[#B721FF] h-[42px] md:w-4/6 mx-auto flex justify-center items-center border-ins-border border-[1px] rounded-lg"
+        >
+          <div className="w-[30px] h-[30px]">
+            <Facebook />
+          </div>
+          <p className="ml-3">SignIn with Facebook</p>
+        </div>
+        <div className="h-[10px]"></div>
+        <div className="h-[20px]"></div>
       </div>
     </div>
   );

@@ -25,7 +25,6 @@ export const Layout: React.FC = ({ children }) => {
     dispatch(fetchAllPostsRequest());
     dispatch(fetchAllUsersRequest());
   });
-
   return (
     <div
       className={`${

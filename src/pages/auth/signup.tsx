@@ -18,6 +18,7 @@ const schema = yup
     username: yup.string().min(3).max(20).required(),
     email: yup.string().email().required(),
     password: yup.string().min(6).max(20).required(),
+    passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
   })
   .required();
 
@@ -41,66 +42,72 @@ const SignUpPage: NextPage = () => {
   const onSubmit = (data: ISignUpWithEmail) => dispatch(createUserWithEmailRequest(data));
   const errMsg = useAppSelector((state) => state.auth.errMsg);
   return (
-    <div className="w-screen sm:w-full min-h-screen flex justify-center items-center">
-      <div className="w-[320px] h-[550px]">
-        <div className="h-[30px]"></div>
-        <div className="h-[450px] border-[1px] border-ins-border flex flex-col items-center justify-start relative">
-          <div className="w-[170px] mt-16 flex justify-center items-center">
-            <Icon size={50} href={AppRoutes.HOME_PAGE}>
-              <Instagram />
-            </Icon>
-          </div>
-          <div className="h-[90px] flex justify-center items-center text-red-500">
-            <p>{errMsg && errMsg}</p>
-          </div>
-
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              {...register('username')}
-              placeholder="Username"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-            />
-
-            <div className="h-[20px] text-red-500">
-              <p>{errors.username?.message}</p>
-            </div>
-            <input
-              {...register('email')}
-              placeholder="Email"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-            />
-
-            <div className="h-[20px] text-red-500">
-              <p>{errors.email?.message}</p>
-            </div>
-            <input
-              {...register('password')}
-              placeholder="Password"
-              type="password"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 focus:border-indigo-600"
-            />
-
-            <div className="h-[20px] text-red-500">
-              <p>{errors.password?.message}</p>
-            </div>
-            <input
-              type="submit"
-              value="Sign Up"
-              className="border-[1px] border-ins-border focus:outline-none w-[230px] py-2 px-3 cursor-pointer text-blue-500"
-            />
-          </form>
-          <div className="h-[10px]"></div>
-          {/* back to sign in */}
-          <div
-            className="absolute top-0 left-0 flex cursor-pointer w-[60px] h-[35px] justify-center items-center"
-            onClick={() => {
-              router.push('/auth/signin');
-            }}
-          >
-            <BackIcon />
-            <span>Back</span>
+    <div className="w-full bg-[#fafafa]">
+      {/* space between header */}
+      <div className="md:h-[90px] h-[50px]"></div>
+      <div className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md">
+        <div className="h-[70px]"></div>
+        {/* logo section */}
+        <div className="flex justify-center items-center ">
+          <div className="relative w-[120px] h-[120px]">
+            <Image src={require('@/assets/png/icon.png')} alt="" className="object-fill" />
           </div>
         </div>
+        {/* space */}
+        <div className="h-[40px]"></div>
+        {/* form section */}
+        <div className="flex justify-center items-center">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-4/5 md:w-4/6">
+            <input
+              type="text"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
+              {...register('username')}
+              placeholder="Username"
+            />
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.username?.message}
+            </div>
+            <input
+              type="text"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
+              {...register('email')}
+              placeholder="Email"
+            />
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.email?.message}
+            </div>
+            <input
+              type="password"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
+              placeholder="Password"
+              {...register('password')}
+            />
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.password?.message}
+            </div>
+            <input
+              type="password"
+              className="py-3 px-5 w-full rounded-lg border-ins-border border-[1px] shadow-lg"
+              placeholder="Confirm Password"
+              {...register('passwordConfirmation')}
+            />
+            <div className="h-[30px] flex justify-center items-center text-red-500">
+              {errors.passwordConfirmation?.message}
+            </div>
+            <button
+              className="px-10 py-3 border rounded-xl w-full bg-gradient-to-r border-ins-border shadow-lg from-[#FBDA61] to-[#FC00FF] hover:bg-blue-300 active:bg-blue-300"
+              type="submit"
+            >
+              Create Account
+            </button>
+          </form>
+        </div>
+        {/* space */}
+
+        {/* space */}
+        <div className="h-[15px]"></div>
+
+        <div className="h-[20px]"></div>
       </div>
     </div>
   );
