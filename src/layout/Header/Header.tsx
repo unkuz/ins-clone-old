@@ -142,7 +142,12 @@ export const Header: React.FC = () => {
               >
                 <div onClick={() => {}}>
                   <div className="w-[25px] h-[25px] md:w-[22px] md:h-[22px] md:cursor-pointer flex justify-center items-center">
-                    <ImageNextJS width={25} height={25} circle src={user?.photoURL} />
+                    <ImageNextJS
+                      width={25}
+                      height={25}
+                      circle
+                      src={user?.photoURL ? user?.photoURL : ''}
+                    />
                   </div>
                 </div>
               </div>
