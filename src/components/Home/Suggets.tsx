@@ -3,7 +3,22 @@ import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { signOutRequest } from '@/store/reducers/authSlice';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
+const suggetsVariants = {
+  hidden: {
+    x: '100vw',
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      delay: 0.5,
+    },
+  },
+};
 export const HomeSuggests: React.FC = () => {
   const allUsers = useAppSelector((state) => state.users.users);
   const currentUser = useAppSelector((state) => state.auth.user);
@@ -14,7 +29,12 @@ export const HomeSuggests: React.FC = () => {
   return (
     <>
       {isAuth === 'authenticated' && (
-        <div className="w-[315px] h-[500px] lg:flex flex-col relative border-[1px] border-ins-border hidden rounded-lg">
+        <motion.div
+          variants={suggetsVariants}
+          initial="hidden"
+          animate="visible"
+          className="w-[315px] h-[500px] lg:flex flex-col relative border-[1px] border-ins-border hidden rounded-lg"
+        >
           <div className="w-11/12 mx-auto border-b-[1px] border-ins-border">
             <div className="w-full h-[70px] flex justify-between items-center">
               <div className="h-[45px] w-[45px] overflow-hidden rounded-full relative">
@@ -58,7 +78,7 @@ export const HomeSuggests: React.FC = () => {
           <div className="w-full h-[30px] absolute bottom-0 border-t-[1px] border-ins-border flex justify-center items-center">
             <p className="mx-auto">© 2021 cuzknothz</p>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

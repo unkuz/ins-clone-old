@@ -17,6 +17,7 @@ import { AppRoutes } from '@/routes';
 import { NextPage } from 'next';
 import Google from '@/assets/svg/google.svg';
 import Facebook from '@/assets/svg/facebook.svg';
+import { motion } from 'framer-motion';
 
 const schema = yup
   .object({
@@ -24,6 +25,20 @@ const schema = yup
     password: yup.string().min(6).max(20).required(),
   })
   .required();
+
+const signInAnimate = {
+  hidden: {
+    x: -100,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+    },
+  },
+};
 
 const SignInPage: NextPage = () => {
   const router = useRouter();
@@ -47,7 +62,12 @@ const SignInPage: NextPage = () => {
     <div className="w-full bg-[#fafafa]">
       {/* space between header */}
       <div className="md:h-[90px] h-[50px]"></div>
-      <div className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md">
+      <motion.div
+        variants={signInAnimate}
+        initial="hidden"
+        animate="visible"
+        className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md"
+      >
         <div className="h-[70px]"></div>
         {/* logo section */}
         <div className="flex justify-center items-center ">
@@ -87,7 +107,7 @@ const SignInPage: NextPage = () => {
           </form>
         </div>
         {/* space */}
-        <div className="h-[30px] flex justify-center items-center ">OR</div>
+        <div className="h-[30px] flex justify-center items-center ">/---------OR---------/</div>
         <div
           onClick={() => router.push('/auth/signup')}
           className="shadow-lg sm:cursor-pointer bg-gradient-to-br from-[#FAD961] to-[#F76B1C] w-4/5 h-[42px] md:w-4/6 mx-auto flex justify-center items-center border-ins-border border-[1px] rounded-lg"
@@ -117,7 +137,7 @@ const SignInPage: NextPage = () => {
         </div>
         <div className="h-[10px]"></div>
         <div className="h-[20px]"></div>
-      </div>
+      </motion.div>
     </div>
   );
 };

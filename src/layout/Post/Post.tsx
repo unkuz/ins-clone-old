@@ -68,7 +68,7 @@ const Post: NextPage = () => {
           >
             <Close className="cursor-pointer" />
           </div>
-          <div className="z-50 w-full md:w-[400px] md:h-[550px] border-[1px] border-ins-border flex flex-col bg-white">
+          <div className="z-50 w-full md:w-[400px] md:h-[550px] border-[1px] border-ins-border flex flex-col bg-white rounded-xl shadow-lg">
             <p className="w-full h-[50px] flex justify-center items-center border-b-[1px] border-ins-border">
               Create new post
             </p>

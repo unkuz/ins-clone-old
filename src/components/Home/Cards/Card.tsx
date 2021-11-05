@@ -27,7 +27,7 @@ export const Card = ({ id, user, imageURL, likes, dislikes, timeStamp, caption, 
 
   return (
     <>
-      <div className="w-screen md:w-[600px] border-[1px] border-ins-border rounded-lg">
+      <div className="w-screen shadow-md md:w-[600px] border-[1px] border-ins-border rounded-lg">
         {/* top card */}
 
         <div className="h-[50px] flex justify-between items-center">

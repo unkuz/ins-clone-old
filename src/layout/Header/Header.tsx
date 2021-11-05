@@ -22,7 +22,21 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
+const headerVariants = {
+  hidden: {
+    y: '-100vh',
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+    },
+  },
+};
 export const Header: React.FC = () => {
   const widthUserDevice = window.innerWidth;
   const dispatch = useAppDispatch();
@@ -32,7 +46,7 @@ export const Header: React.FC = () => {
   const isProfilePopUpShow = useAppSelector((state) => state.app.profile.isProfilePopUp);
   const router = useRouter();
   return (
-    <header className="fixed bottom-0 md:top-0 w-screen h-[65px] md:h-[50px] border-t-[1px] md:border-t-0 md:border-b-[1px] border-ins-border bg-white z-20">
+    <header className="fixed shadow-sm bottom-0 md:top-0 w-screen h-[65px] md:h-[50px] border-t-[1px] md:border-t-0 md:border-b-[1px] border-ins-border bg-white z-20">
       <div className="w-full md:w-[600px] lg:w-[950px] mx-auto h-full flex justify-between">
         {/* logo section */}
         <div className="hidden md:flex h-full justify-start items-center flex-1">

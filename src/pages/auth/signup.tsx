@@ -12,7 +12,22 @@ import * as yup from 'yup';
 import { Icon } from '@/components/Icon';
 import { AppRoutes } from '@/routes';
 import Instagram from '@/assets/svg/instagram.svg';
+import { motion } from 'framer-motion';
 
+const signUpAnimate = {
+  hidden: {
+    opacity: 0,
+    y: '-100vh',
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      type: 'spring',
+    },
+  },
+};
 const schema = yup
   .object({
     username: yup.string().min(3).max(20).required(),
@@ -45,7 +60,12 @@ const SignUpPage: NextPage = () => {
     <div className="w-full bg-[#fafafa]">
       {/* space between header */}
       <div className="md:h-[90px] h-[50px]"></div>
-      <div className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md">
+      <motion.div
+        variants={signUpAnimate}
+        initial="hidden"
+        animate="visible"
+        className="w-full md:w-[400px] mx-auto md:border-[1px] md:bg-white md:border-ins-border rounded-xl md:shadow-md"
+      >
         <div className="h-[70px]"></div>
         {/* logo section */}
         <div className="flex justify-center items-center ">
@@ -108,7 +128,7 @@ const SignUpPage: NextPage = () => {
         <div className="h-[15px]"></div>
 
         <div className="h-[20px]"></div>
-      </div>
+      </motion.div>
     </div>
   );
 };
