@@ -18,6 +18,7 @@ export interface ISignUpWithEmail {
 export interface ISignInWithEmail {
   email: string;
   password: string;
+  username: string;
 }
 
 type gender = 'male' | 'female' | 'none';
