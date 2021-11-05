@@ -9,7 +9,7 @@ import {
 import { NextPage } from 'next';
 import Image from 'next/image';
 import React from 'react';
-import { MiniPost } from '@/layout/Profile/MiniPost';
+import { MiniPost } from '@/components/Profile/MiniPost';
 import { useRouter } from 'next/router';
 
 const AccountPage: NextPage = () => {
