@@ -1,6 +1,7 @@
 export interface EmailPassword {
   email: string;
   password: string;
+  username: string;
 }
 export interface EditProfile {
   name: string;

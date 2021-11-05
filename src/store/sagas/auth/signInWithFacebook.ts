@@ -1,5 +1,5 @@
 import { auth, FacebookProvider, db } from '@/helpers/firebase';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
 import {
   signInWithFacebookFailure,
@@ -14,26 +14,19 @@ function* onSignInWithFacebook(): any {
   try {
     const result = yield call(signInWithPopup, auth, FacebookProvider);
     const credential = FacebookAuthProvider.credentialFromResult(result);
-    const acessToken = credential?.accessToken;
+    const token = credential?.accessToken;
     const user = result.user;
 
-    const querySnapshotAllUser = yield getDocs(collection(db, 'users'));
-    let checkUserIsExist = false;
-    let userExist;
+    const userRef = doc(db, 'users', user.uid);
+    const usersSnap = yield getDoc(userRef);
 
-    querySnapshotAllUser.forEach((doc: any) => {
-      if (doc.id == user.uid) {
-        checkUserIsExist = true;
-        userExist = doc.data();
-      }
-    });
-    console.log('is user exist', checkUserIsExist);
-    if (!checkUserIsExist) {
-      yield setDoc(doc(db, 'users', user.uid), generateNewUser(user));
-      yield put(signInWithFacebookSucess(generateNewUser(user)));
-    } else {
-      yield put(signInWithFacebookSucess(userExist));
+    // !check is user exist on firestore
+    if (!usersSnap.exists()) {
+      yield setDoc(userRef, generateNewUser(user));
     }
+    const userSnap = yield getDoc(userRef);
+    const userData = yield userSnap.data();
+    yield put(signInWithFacebookSucess(userData));
   } catch (err) {
     yield put(signInWithFacebookFailure(err));
   }

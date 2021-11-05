@@ -1,10 +1,5 @@
-import { CardFeed } from '@/components/CardFeed/CardFeed';
-import { Feed } from '@/components/Feed/Feed';
+import Home from '@/components/Home';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Home from '@/layout/Home/Home';
-import { withHeader } from '@/hoc/layout/withHeader';
 import React from 'react';
 
 const HomePage: NextPage = () => {

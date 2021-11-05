@@ -7,7 +7,7 @@ export const Search: React.FC = () => {
   return (
     <>
       <input
-        className="focus:outline-none w-full py-1 px-4 focus:border-indigo-500 md:w-[150px] lg:w-[200px] border-[1px] border-[#dbdbdb] bg-white z-50"
+        className="focus:outline-none w-full py-[5px] px-7 focus:border-indigo-500 md:w-[150px] lg:w-[300px] border-[1px] border-[#dbdbdb] bg-white z-50 rounded-md"
         placeholder="Search"
       />
     </>

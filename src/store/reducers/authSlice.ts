@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   user: User | undefined;
-  status: 'loading' | 'authenticated' | 'unauthenticated';
+  status: 'authenticated' | 'unauthenticated';
   errMsg: string;
 }
 
@@ -18,7 +18,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     createUserWithEmailRequest: (state, action: PayloadAction<ISignUpWithEmail>) => {
-      state.status = 'loading';
       state.errMsg = '';
     },
     createUserWithEmailSuccess: (state, action) => {
@@ -32,7 +31,6 @@ const authSlice = createSlice({
       state.errMsg = action.payload.code;
     },
     signInWithGoogleRequest: (state) => {
-      state.status = 'loading';
       state.errMsg = '';
     },
     signInWithGoogleSucess: (state, action) => {
@@ -46,8 +44,6 @@ const authSlice = createSlice({
       state.errMsg = action.payload.code;
     },
     signInWithFacebookRequest: (state) => {
-      state.status = 'loading';
-      state.user = undefined;
       state.errMsg = '';
     },
     signInWithFacebookSucess: (state, action) => {
@@ -61,7 +57,6 @@ const authSlice = createSlice({
       state.errMsg = action.payload.code;
     },
     signInWithEmailRequest: (state, action: PayloadAction<EmailPassword>) => {
-      state.status = 'loading';
       state.errMsg = '';
     },
     signInWithEmailSuccess: (state, action) => {
@@ -75,7 +70,6 @@ const authSlice = createSlice({
       state.errMsg = action.payload.code;
     },
     signOutRequest: (state) => {
-      state.status = 'loading';
       state.errMsg = '';
     },
     signOutSuccess: (state) => {
@@ -84,7 +78,6 @@ const authSlice = createSlice({
       state.errMsg = '';
     },
     signOutFailure: (state, action) => {
-      state.status = 'loading';
       state.errMsg = action.payload.err;
     },
     editProfileRequest: (state, action) => {},

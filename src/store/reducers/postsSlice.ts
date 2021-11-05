@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface Post {
   user: string;
   likes: string[];
+  dislikes: string[];
   caption: string;
   imageURL: string;
   timeStamp: any;
   id: string;
+  comment: any[];
 }
 enum PostStatus {
   LOADING = 'LOADING',
@@ -40,6 +42,7 @@ const postsSlice = createSlice({
     },
     userPostFailure: (state, action) => {
       state.status = PostStatus.FAILURE;
+      state.errMsg = action.payload.code;
     },
     fetchAllPostsRequest: (state) => {
       state.status = PostStatus.LOADING;
@@ -49,7 +52,7 @@ const postsSlice = createSlice({
       state.status = PostStatus.SUCCESS;
     },
     fetchAllPostsFailure: (state, action) => {
-      state.errMsg = action.payload;
+      state.errMsg = action.payload.code;
       state.status = PostStatus.NONE;
     },
   },

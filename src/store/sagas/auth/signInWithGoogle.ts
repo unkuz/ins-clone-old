@@ -6,7 +6,7 @@ import {
 } from '@/store/reducers/authSlice';
 import { generateNewUser } from '@/utils/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* onSignInWithGoogle(): any {
@@ -15,25 +15,19 @@ function* onSignInWithGoogle(): any {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
     const user = result.user;
+    const conversationRef = collection(db, 'conversations');
+    yield addDoc(conversationRef, {});
 
-    const querySnapshotAllUser = yield getDocs(collection(db, 'users'));
-    let checkUserIsExist = false;
-    let userExist;
+    const userRef = doc(db, 'users', user.uid);
+    const usersSnap = yield getDoc(userRef);
 
-    querySnapshotAllUser.forEach((doc: any) => {
-      if (doc.id == user.uid) {
-        checkUserIsExist = true;
-        userExist = doc.data();
-      }
-      console.log(doc.data());
-    });
-
-    if (!checkUserIsExist) {
-      yield setDoc(doc(db, 'users', user.uid), generateNewUser(user));
-      yield put(signInWithGoogleSucess(generateNewUser(user)));
-    } else {
-      yield put(signInWithGoogleSucess(userExist));
+    // !check is user exist on firestore
+    if (!usersSnap.exists()) {
+      yield setDoc(userRef, generateNewUser(user));
     }
+    const userSnap = yield getDoc(userRef);
+    const userData = yield userSnap.data();
+    yield put(signInWithGoogleSucess(userData));
   } catch (err) {
     yield put(signInWithGoogleFailure(err));
   }

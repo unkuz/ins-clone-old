@@ -1,4 +1,4 @@
-import Profile from '@/layout/Profile/Profile';
+import Profile from '@/components/Profile';
 import { useAppSelector } from '@/store';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';

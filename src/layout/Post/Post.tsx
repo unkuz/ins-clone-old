@@ -8,11 +8,13 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { withLayout } from '@/hoc/layout/withLayout';
 import { userPostRequest } from '@/store/reducers/postsSlice';
+import CreatePost from '@/assets/svg/create_post.svg';
+import Cropper from 'cropperjs';
 
 const Post: NextPage = () => {
   const dispatch = useAppDispatch();
   const selected = useAppSelector((state) => state.app.selected);
-  const userUid = useAppSelector((state) => state.auth.user?.userUid);
+  const user = useAppSelector((state) => state.auth.user);
   const router = useRouter();
   const inputUpload = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>();
@@ -39,10 +41,17 @@ const Post: NextPage = () => {
     const data = {
       caption,
       selectedFile,
-      userUid,
+      userUid: user?.userUid,
     };
     dispatch(userPostRequest(data));
   };
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <Head>
@@ -65,6 +74,19 @@ const Post: NextPage = () => {
             </p>
             <div className="h-[30px]"></div>
             <div className="w-full h-full flex flex-col justify-center items-center ">
+              <div>
+                {/* Area Drop Image */}
+                {!selectedFile && (
+                  <div
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    className="bg-black/20 w-[300px] h-[200px] flex flex-col justify-center items-center"
+                  >
+                    <CreatePost />
+                    <p>Drag Image here !🤑🤑🤑</p>
+                  </div>
+                )}
+              </div>
               <div>
                 {selectedFile && (
                   <img
@@ -102,9 +124,9 @@ const Post: NextPage = () => {
                 {!selectedFile && (
                   <div
                     onClick={handleUpload}
-                    className="border-ins-border border-[1px] rounded-md px-10 py-1 bg-blue-500 text-white mt-5 cursor-pointer"
+                    className="border-ins-border mb-4 border-[1px] rounded-md px-10 py-1 bg-blue-500 text-white mt-5 cursor-pointer"
                   >
-                    Selected Image
+                    Or Selected Image
                   </div>
                 )}
                 {selectedFile && (

@@ -32,9 +32,9 @@ export const Layout: React.FC = ({ children }) => {
         selected === AppSelected.NEW_POST ||
         isEditProfilePopUpShow === true ||
         isActivityFeedPopUpShow === true
-          ? 'max-h-screen overflow-hidden'
+          ? 'h-screen overflow-hidden'
           : ''
-      } text-xs w-full relative`}
+      }text-xs w-full relative`}
     >
       <HeadMeta />
       {/* {isSearchPopUpShow && <SearchPopUp />} */}

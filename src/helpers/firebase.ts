@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { getStorage, ref } from 'firebase/storage';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
