@@ -127,7 +127,7 @@ const Profile = () => {
                   key={Math.random()}
                   likes={50}
                   comments={56}
-                  imageUrl="https://images.unsplash.com/photo-1633809787036-b06db15939c4?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8Qm4tRGpyY0Jyd298fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                  imageUrl="https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed"
                 />
               ))}
           {/* Only saved show */}
@@ -139,7 +139,7 @@ const Profile = () => {
                   key={Math.random()}
                   likes={500989}
                   comments={56}
-                  imageUrl="https://images.unsplash.com/photo-1635807013625-d4c06fad0a29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80"
+                  imageUrl="https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed"
                 />
               ))}
         </div>

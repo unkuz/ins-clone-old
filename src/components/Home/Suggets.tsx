@@ -33,7 +33,7 @@ export const HomeSuggests: React.FC = () => {
           variants={suggetsVariants}
           initial="hidden"
           animate="visible"
-          className="w-[315px] h-[500px] lg:flex flex-col relative border-[1px] border-ins-border hidden rounded-lg"
+          className="w-[315px] h-[500px] lg:flex flex-col relative border-[1px] border-ins-border hidden rounded-lg overflow-y-scroll scrollbar-thin"
         >
           <div className="w-11/12 mx-auto border-b-[1px] border-ins-border">
             <div className="w-full h-[70px] flex justify-between items-center">
@@ -74,9 +74,6 @@ export const HomeSuggests: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="w-full h-[30px] absolute bottom-0 border-t-[1px] border-ins-border flex justify-center items-center">
-            <p className="mx-auto">© 2021 cuzknothz</p>
           </div>
         </motion.div>
       )}

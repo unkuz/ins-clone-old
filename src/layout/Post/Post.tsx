@@ -10,6 +10,7 @@ import { withLayout } from '@/hoc/layout/withLayout';
 import { userPostRequest } from '@/store/reducers/postsSlice';
 import CreatePost from '@/assets/svg/create_post.svg';
 import Cropper from 'cropperjs';
+import imageCompression from 'browser-image-compression';
 
 const Post: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -17,25 +18,29 @@ const Post: NextPage = () => {
   const user = useAppSelector((state) => state.auth.user);
   const router = useRouter();
   const inputUpload = useRef<HTMLInputElement>(null);
-  const [selectedFile, setSelectedFile] = useState<string | null>();
+  const [selectedFile, setSelectedFile] = useState<string | null | undefined>();
   const [caption, setCaption] = useState('');
   const handleUpload = () => {
     if (inputUpload.current) {
       inputUpload.current.click();
     }
   };
-  const addImageToPost = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileList = e.target.files;
-    const reader = new FileReader();
-    if (fileList) {
-      reader.readAsDataURL(fileList[0]);
-    }
-    reader.onload = (readerEvent) => {
-      const dataUri = readerEvent.target?.result as string;
-      if (dataUri) {
-        setSelectedFile(dataUri);
-      }
+  const handleImageUpload = async (event: any) => {
+    const imageFile = event.target.files[0];
+    const options = {
+      maxSizeMB: 0.25,
+      maxWidthOrHeight: 1500,
+      useWebWorker: true,
     };
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+      const base64URL = await imageCompression.getDataUrlFromFile(compressedFile);
+      setSelectedFile(base64URL as unknown as string);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handlePostToFireBase = () => {
     const data = {
@@ -116,10 +121,11 @@ const Post: NextPage = () => {
               <div>
                 <input
                   type="file"
-                  id="input"
+                  id="upload"
+                  accept="image/*"
                   className="z-50 hidden"
                   ref={inputUpload}
-                  onChange={addImageToPost}
+                  onChange={handleImageUpload}
                 />
                 {!selectedFile && (
                   <div

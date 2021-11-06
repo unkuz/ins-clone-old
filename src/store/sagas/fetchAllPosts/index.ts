@@ -85,7 +85,8 @@ function* onUserPost(): any {
     // !get all posts
 
     const postsRef = collection(db, 'posts');
-    const postsSnap = yield getDocs(postsRef);
+    // !test
+    const postsSnap = yield getDocs(query(postsRef, orderBy('timeStamp', 'desc')));
     postsSnap.forEach((doc: any) => {
       allPosts.push(doc.data());
     });

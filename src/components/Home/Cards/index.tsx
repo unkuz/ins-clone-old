@@ -26,7 +26,11 @@ export const Cards = () => {
           ({ id, user, imageURL, likes, dislikes, timeStamp, caption, comment }) => (
             <Card
               key={id}
-              imageURL={imageURL}
+              imageURL={
+                imageURL
+                  ? imageURL
+                  : 'https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed'
+              }
               user={user}
               likes={likes}
               dislikes={dislikes}

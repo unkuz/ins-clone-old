@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Comment from '@/assets/svg/comment.svg';
 import Emoji from '@/assets/svg/emoji.svg';
 import Like from '@/assets/svg/like.svg';
@@ -37,7 +38,11 @@ export const Card = ({ id, user, imageURL, likes, dislikes, timeStamp, caption, 
               <div className="bg-white rounded-full p-[2px]">
                 <div className="relative w-[35px] h-[35px] rounded-full bg-white overflow-hidden p-[2px]">
                   <Image
-                    src={user?.photoURL}
+                    src={
+                      user?.photoURL
+                        ? user?.photoURL
+                        : 'https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed'
+                    }
                     alt={user?.username}
                     layout="fill"
                     className="object-fill"
@@ -58,14 +63,20 @@ export const Card = ({ id, user, imageURL, likes, dislikes, timeStamp, caption, 
         </div>
         {/* Picture video area */}
         <div>
-          <div className="relative w-full h-auto aspect-w-5 aspect-h-6">
+          {/* <div className="relative w-full h-auto aspect-w-5 aspect-h-6">
             <Image
-              src={imageURL ? imageURL : ''}
+              src={
+                imageURL
+                  ? imageURL
+                  : 'https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed'
+              }
               layout="fill"
               alt={caption}
               className="object-cover"
             />
-          </div>
+          </div> */}
+          {/* // eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imageURL} className="object-cover w-full" alt="" />
         </div>
         {/* Icon section */}
         <div className="h-[50px] flex justify-between items-center">
@@ -124,7 +135,11 @@ export const Card = ({ id, user, imageURL, likes, dislikes, timeStamp, caption, 
                     <div className="bg-white rounded-full p-[2px]  flex justify-center items-center">
                       <div className="relative w-[30px] h-[30px] rounded-full bg-white overflow-hidden p-[2px]">
                         <Image
-                          src={authCurrentUser?.photoURL ? authCurrentUser?.photoURL : ''}
+                          src={
+                            authCurrentUser?.photoURL
+                              ? authCurrentUser?.photoURL
+                              : 'https://firebasestorage.googleapis.com/v0/b/instagram-cuzknothz.appspot.com/o/default.jpg?alt=media&token=c6dfb887-b739-4260-827e-608d1f405eed'
+                          }
                           alt={authCurrentUser?.name}
                           layout="fill"
                           className="object-fill"
