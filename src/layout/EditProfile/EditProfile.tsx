@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { EditProfile } from '@/utils/types/auth';
+import { EditProfile as EditProfileData } from '@/utils/types/auth';
 import { editProfileRequest } from '@/store/reducers/authSlice';
 import { useRouter } from 'next/router';
 
@@ -39,7 +39,7 @@ const EditProfile = () => {
       bio: user?.bio,
     },
   });
-  const onSubmit = (data: EditProfile) => {
+  const onSubmit = (data: EditProfileData) => {
     data.userUid = userUid;
     console.log(data);
     dispatch(editProfileRequest(data));

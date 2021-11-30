@@ -30,7 +30,7 @@ const signInVariants = {
   hidden: {
     x: -100,
     opacity: 90,
-    rotate: 900,
+    rotate: 0,
   },
   visible: {
     x: 0,
@@ -108,7 +108,7 @@ const SignInPage: NextPage = () => {
   });
   const onSubmit = (data: ISignInWithEmail) => dispatch(signInWithEmailRequest(data));
   return (
-    <div className="w-full bg-[#fafafa]">
+    <div className="w-full bg-[#fafafa] min-h-screen">
       {/* space between header */}
       <div className="md:h-[90px] h-[50px]"></div>
       <motion.div
@@ -159,7 +159,7 @@ const SignInPage: NextPage = () => {
           </form>
         </div>
         {/* space */}
-        <div className="h-[30px] flex justify-center items-center ">/---------OR---------/</div>
+        <div className="h-[30px] flex justify-center items-center "></div>
         <motion.div
           variants={dropVariants}
           onClick={() => router.push('/auth/signup')}

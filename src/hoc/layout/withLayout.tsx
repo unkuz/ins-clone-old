@@ -6,7 +6,7 @@ export const withLayout = (WrappedComponent: any) => {
     return (
       <>
         {header && <Header />}
-        {header && <div className="sm:h-[80px]"></div>}
+        {/* {header && <div className="sm:h-[80px]"></div>} */}
         {layout ? (
           <div className="w-full md:w-[600px] lg:w-[950px] mx-auto">
             <WrappedComponent />
@@ -15,7 +15,7 @@ export const withLayout = (WrappedComponent: any) => {
           <WrappedComponent />
         )}
 
-        {footer && <div className="w-full h-[100px]"></div>}
+        {/* {footer && <div className="w-full h-[100px]"></div>} */}
       </>
     );
   };
