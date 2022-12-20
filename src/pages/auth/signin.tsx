@@ -108,7 +108,7 @@ const SignInPage: NextPage = () => {
   });
   const onSubmit = (data: ISignInWithEmail) => dispatch(signInWithEmailRequest(data));
   return (
-    <div className="w-full bg-[#fafafa]">
+    <div className="w-full bg-[#fafafa] min-h-screen">
       {/* space between header */}
       <div className="md:h-[90px] h-[50px]"></div>
       <motion.div

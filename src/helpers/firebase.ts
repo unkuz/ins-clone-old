@@ -4,8 +4,9 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  apiKey: 'AIzaSyBnTmhe4kjG5ixLB0v0YiNI7wHiuACOD4s',
   authDomain: 'instagram-cuzknothz.firebaseapp.com',
+  databaseURL: 'https://instagram-cuzknothz-default-rtdb.firebaseio.com',
   projectId: 'instagram-cuzknothz',
   storageBucket: 'instagram-cuzknothz.appspot.com',
   messagingSenderId: '294855522800',
