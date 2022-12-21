@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 
-const withPWA = require('next-pwa');
+// const withPWA = require('next-pwa');
 
 module.exports = {
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-  },
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     domains: [
       'placekitten.com',

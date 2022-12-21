@@ -30,12 +30,10 @@ const signInVariants = {
   hidden: {
     x: -100,
     opacity: 90,
-    rotate: 900,
   },
   visible: {
     x: 0,
     opacity: 1,
-    rotate: 0,
     transition: {
       type: 'spring',
       when: 'beforeChildren',

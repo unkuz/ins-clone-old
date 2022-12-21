@@ -14,7 +14,7 @@ import React, { useEffect } from 'react';
 import { ActivityFeed } from './ActivityFeed/ActivityFeed';
 import EditProfile from './EditProfile/EditProfile';
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout = ({ children }): JSX.Element => {
   const isSearchPopUpShow = useAppSelector((state) => state.app.isShowSearchPopUp);
   const isProfilePopUpShow = useAppSelector((state) => state.app.profile.isProfilePopUp);
   const isEditProfilePopUpShow = useAppSelector((state) => state.app.profile.isEditProfilePopUp);
